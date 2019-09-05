@@ -15,5 +15,11 @@ describe('Wallet', function () {
 
             expect(name).toHaveLength(1);
         });
+        it('should display the Wallet balance', function () {
+            const wallet = shallow(<Wallet/>);
+            const balance = wallet.find('h4');
+
+            expect(balance).toHaveLength(1);
+        });
     }
 )
