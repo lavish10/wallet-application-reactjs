@@ -22,7 +22,53 @@
 .App-link {
   color: #61dafb;
 }
-
+.container{
+  width: 80%;
+  margin: 0 auto; /* Center the DIV horizontally */
+}
+.fixed-header, .fixed-footer{
+  width: 100%;
+  position: fixed;
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+}
+.fixed-header{
+  top: 0;
+}
+.fixed-footer{
+  bottom: 0;
+}
+/* Some more styles to beutify this example */
+nav p{
+  color: #fff;
+  float:right;
+  font-family: sans-serif;
+}
+.container h2 {
+  line-height: 200px; /* Create scrollbar to test positioning */
+  text-align:center;
+  font-family: sans-serif;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+#b1{
+  float: left;
+}
+#b2{
+  float: right;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
