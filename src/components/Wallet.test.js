@@ -9,5 +9,11 @@ describe('Wallet', function () {
 
             expect(buttons).toHaveLength(2);
         });
+        it('should display the Wallet owner name', function () {
+            const wallet = shallow(<Wallet/>);
+            const name = wallet.find('p');
+
+            expect(name).toHaveLength(1);
+        });
     }
 )
