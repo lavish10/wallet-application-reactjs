@@ -9,6 +9,7 @@ class Wallet extends Component {
     }
 
     setWallet = (response) => {
+        /* istanbul ignore next */
         this.setState({
             name: response.data.name,
             balance: response.data.balance,
@@ -16,6 +17,7 @@ class Wallet extends Component {
         })
     };
     onAddMoney = () => {
+        /* istanbul ignore next */
         this.componentDidMount();
     };
     componentDidMount = () => {

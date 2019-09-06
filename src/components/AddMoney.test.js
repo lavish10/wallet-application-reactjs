@@ -31,4 +31,17 @@ describe('AddMoney', function () {
         expect(addMoney.find('label').text()).toEqual('You have successfully add 50 in your wallet');
     });
 
+    it('should update the status after successful credit of money3453v', async function () {
+        AddMoneyService.post.mockResolvedValue({amount:50});
+        const mockFn = jest.fn();
+        const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
+        const event = {target: {value: 0}};
+
+        addMoney.find('input').simulate('change',event);
+        addMoney.find('button').simulate('click');
+        await Promise.resolve();
+
+        expect(addMoney.find('label').text()).toEqual('');
+    });
+
 });

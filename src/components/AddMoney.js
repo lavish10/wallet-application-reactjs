@@ -33,11 +33,7 @@ class AddMoney extends Component {
                 })
                 this.props.onAddMoney();
                 setTimeout(() => {
-                    this.setState({
-                        amount: '',
-                        status: ''
-                    })
-                    this.props.changeDisplay()
+                    this.extracted();
                 }, 2000)
             }).catch(error => {
             this.setState({
@@ -46,10 +42,18 @@ class AddMoney extends Component {
         })
     };
 
+    extracted() {
+        this.setState({
+            amount: '',
+            status: ''
+        })
+        this.props.changeDisplay()
+    }
+
     render() {
         return (
             <div>
-                Amount: <input type={"number"} value={this.state.amount} onChange={this.handleOnChange}/><br/>
+                Amount: <input min={50} max={50000} type={"number"} value={this.state.amount} onChange={this.handleOnChange}/><br/>
                 <button className="button" onClick={this.handleOnclick}>Add Money</button>
                 <label>{this.state.status}</label>
             </div>
