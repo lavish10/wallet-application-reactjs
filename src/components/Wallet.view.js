@@ -15,7 +15,7 @@ class WalletView extends Component {
         this.setState({
             display: !this.state.display
         })
-    }
+    };
 
     render() {
         return (
