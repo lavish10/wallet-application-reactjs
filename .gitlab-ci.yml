@@ -15,10 +15,6 @@ pages:
     - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=megamindwalletui --api-key=$HEROKU_API_KEY
-    - yarn install
-    - yarn build
-    - rm -rf public
-    - mv build public
   artifacts:
     paths:
       - public # mandatory, other folder won't work
