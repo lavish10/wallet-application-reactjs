@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Header from "./Header";
-import AddMoney from "./AddMoney";
+import Header from "../Header";
+import AddMoney from "../AddMoney/AddMoney";
 
 class WalletView extends Component {
 

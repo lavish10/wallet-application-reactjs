@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import addMoneyService from "../service/AddMoneyService";
+import addMoneyService from "../../service/AddMoneyService";
 
 class AddMoney extends Component {
 

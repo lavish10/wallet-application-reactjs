@@ -1,7 +1,7 @@
 import WalletView from "./Wallet.view";
 import {shallow} from "enzyme";
 import React from "react";
-import Header from "./Header";
+import Header from "../Header";
 
 describe('WalletView', function () {
         it('should have 1 button for adding and sending money', function () {
