@@ -11,10 +11,11 @@ describe('WalletView', function () {
             expect(buttons).toHaveLength(1);
         });
         it('should display the Wallet balance', function () {
-            const wallet = shallow(<WalletView/>);
+            const wallet = shallow( <WalletView balance={100}/>);
             const balance = wallet.find('h2');
 
             expect(balance).toHaveLength(1);
+            expect(balance.text()).toEqual('Balance : ₹ 100');
         });
         it('should display the Wallet owner name', function () {
             const wallet = shallow(<WalletView name='someName'/>);
@@ -32,4 +33,4 @@ describe('WalletView', function () {
         });
 
     }
-)
+);

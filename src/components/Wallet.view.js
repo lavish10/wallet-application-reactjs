@@ -14,7 +14,7 @@ class WalletView extends Component {
         this.setState({
             display: !this.state.display
         })
-    }
+    };
     render() {
         return (
             <div>
@@ -25,6 +25,12 @@ class WalletView extends Component {
                         <div>
                             <button id={'b1'} className={'button'} onClick={this.handleClick}>Add Money</button>
                         </div>
+                    </div>
+                    <div style={{textAlign: 'center', display: this.state.display ? 'none' : 'block'}} >
+                        <AddMoney id={this.props.phoneNumber}
+                                  changeDisplay={this.handleClick}
+                                  onAddMoney={this.props.onAddMoney}
+                        />
                     </div>
                 </div>
             </div>
