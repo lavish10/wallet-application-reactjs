@@ -25,20 +25,21 @@ class AddMoney extends Component {
             return;
         }
         const data = {type: 'CREDIT', amount: this.state.amount}
-        addMoneyService(this.props.id, data, (response) => {
-            this.setState({
-                amount: '',
-                status: 'You have successfully add ' + response.data.amount + ' in your wallet'
-            })
-            this.props.onAddMoney();
-            setTimeout(() => {
+        addMoneyService.post(this.props.id, data)
+            .then((response) => {
                 this.setState({
                     amount: '',
-                    status: ''
+                    status: 'You have successfully add ' + response.amount + ' in your wallet'
                 })
-                this.props.changeDisplay()
-            }, 2000)
-        }, error => {
+                this.props.onAddMoney();
+                setTimeout(() => {
+                    this.setState({
+                        amount: '',
+                        status: ''
+                    })
+                    this.props.changeDisplay()
+                }, 2000)
+            }).catch(error => {
             this.setState({
                 status: error
             })
