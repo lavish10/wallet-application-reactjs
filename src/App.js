@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import Wallet from "./components/Wallet";
 
-function App() {
+function App(props) {
+  const id = window.location.pathname.substring(1);
   return (
-    <Wallet/>
+    <Wallet id={id}/>
   );
 }
 

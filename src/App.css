@@ -64,7 +64,7 @@ nav p{
   cursor: pointer;
 }
 #b1{
-  float: left;
+  justify-content: center;
 }
 #b2{
   float: right;
