@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import axios from "axios";
-import Wallet from "./Wallet";
+import addMoneyService from "../service/AddMoneyService";
 
 class AddMoney extends Component {
 
@@ -12,7 +11,7 @@ class AddMoney extends Component {
     }
 
     handleOnChange = (event) => {
-        if (!event.target.value){
+        if (!event.target.value) {
             return;
         }
         this.setState({
@@ -22,30 +21,28 @@ class AddMoney extends Component {
     };
 
     handleOnclick = () => {
-        if (!this.state.amount){
+        if (!this.state.amount) {
             return;
         }
         const data = {type: 'CREDIT', amount: this.state.amount}
-        axios.post('/api/wallets/' + this.props.id + '/transactions', data)
-            .then(response => {
+        addMoneyService(this.props.id, data, (response) => {
+            this.setState({
+                amount: '',
+                status: 'You have successfully add ' + response.data.amount + ' in your wallet'
+            })
+            this.props.onAddMoney();
+            setTimeout(() => {
                 this.setState({
                     amount: '',
-                    status: 'You have successfully add ' + response.data.amount + ' in your wallet'
+                    status: ''
                 })
-                this.props.onAddMoney();
-                setTimeout(()=>{
-                    this.setState({
-                        amount: '',
-                        status:''
-                    })
-                    this.props.changeDisplay()
-                },2000);
+                this.props.changeDisplay()
+            }, 2000)
+        }, error => {
+            this.setState({
+                status: error
             })
-            .catch(error => {
-                this.setState({
-                    status: error
-                })
-            })
+        })
     };
 
     render() {

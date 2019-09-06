@@ -20,7 +20,8 @@ class WalletView extends Component {
             <div>
                 <Header name={this.props.name}/>
                 <div className={'container'} style={{marginTop: '100px'}}>
-                    <div id={'balance'} style={{textAlign: 'center', display: this.state.display ? 'block' : 'none'}} className="container">
+                    <div id={'balance'} style={{textAlign: 'center', display: this.state.display ? 'block' : 'none'}}
+                         className="container">
                         <h2>Balance : ₹ {this.props.balance}</h2>
                         <div>
                             <button id={'b1'} className={'button'} onClick={this.handleClick}>Add Money</button>
