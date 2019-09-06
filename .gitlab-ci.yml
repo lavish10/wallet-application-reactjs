@@ -4,6 +4,9 @@ cache:
   paths:
     - node_modules
 
+variables:
+  REACT_APP_WALLET_API_URL: "https://megamindswallet.herokuapp.com"
+
 stages:
   - deploy
 
