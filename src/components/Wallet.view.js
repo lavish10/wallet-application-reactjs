@@ -11,29 +11,16 @@ class WalletView extends Component {
         }
     }
 
-    handleClick = () => {
-        this.setState({
-            display: !this.state.display
-        })
-    }
-
     render() {
         return (
             <div>
                 <Header name={this.props.name}/>
-                <div className={'container'} style={{marginTop:'100px'}}>
-                    <div style={{textAlign: 'center', display: this.state.display ? 'block' : 'none'}}
-                         className="container">
+                <div className={'container'} style={{marginTop: '100px'}}>
+                    <div className="container">
                         <h2>Balance : ₹ {this.props.balance}</h2>
                         <div>
-                            <button id={'b1'} className={'button'} onClick={this.handleClick}>Add Money</button>
+                            <button id={'b1'} className={'button'}>Add Money</button>
                         </div>
-                    </div>
-                    <div style={{textAlign: 'center', display: this.state.display ? 'none' : 'block'}} >
-                        <AddMoney id={this.props.phoneNumber}
-                                  changeDisplay={this.handleClick}
-                                  onAddMoney={this.props.onAddMoney}
-                        />
                     </div>
                 </div>
             </div>
