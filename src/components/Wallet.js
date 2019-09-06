@@ -1,30 +1,29 @@
 import React, {Component} from 'react';
-import axios from "axios";
 import WalletView from "./Wallet.view";
+import WalletModel from "./Wallet.model";
 
 class Wallet extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        }
+        this.state = {}
     }
-    setWallet = (response)=>{
+
+    setWallet = (response) => {
         this.setState({
             name: response.data.name,
             balance: response.data.balance,
             phoneNumber: response.data.phoneNumber
         })
-    }
-    onAddMoney = ()=>{
+    };
+    onAddMoney = () => {
         this.componentDidMount();
-    }
+    };
     componentDidMount = () => {
-        axios.get('/api/wallets/' + this.props.id)
+        WalletModel.get(this.props.id)
             .then(this.setWallet)
             .catch(function (error) {
-                console.log(error);
             })
-    }
+    };
 
     render() {
         return (
