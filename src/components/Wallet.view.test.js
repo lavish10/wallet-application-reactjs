@@ -22,7 +22,14 @@ describe('WalletView', function () {
 
             expect(header.props().name).toEqual('someName');
         });
+        it('should hide the balance on clicking add money button', function () {
+            const wallet = shallow(<WalletView/>);
+            const button = wallet.find('button');
 
+            button.simulate('click');
+
+            expect(wallet.find('#balance').prop('style').display).toEqual('none');
+        });
 
     }
 )
