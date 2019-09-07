@@ -1,20 +1,41 @@
 import React, {Component} from 'react';
 import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
+import SendMoney from "../SendMoney/SendMoney";
 
 class WalletView extends Component {
 
     constructor(props, context) {
         super(props, context);
         this.state = {
-            display: true
+            display: true,
+            displaySendMoney: false
         }
     }
+
     handleClick = () => {
         this.setState({
             display: !this.state.display
         })
     };
+    handleClickSamePage = () => {
+        this.setState({
+            displaySendMoney: !this.state.displaySendMoney
+        });
+    };
+
+    renderSendMoney = () => {
+        if (!this.state.displaySendMoney) {
+            return;
+        }
+        return (
+            <SendMoney id={this.props.id}
+                       changeDisplay={this.handleClick}
+                       onAddMoney={this.props.onAddMoney}
+            />
+        );
+    };
+
     render() {
         return (
             <div>
@@ -25,6 +46,9 @@ class WalletView extends Component {
                         <h2>Balance : ₹ {this.props.balance}</h2>
                         <div>
                             <button id={'b1'} className={'button'} onClick={this.handleClick}>Add Money</button>
+                            <button id={'sendMoneyBtn'} className={'button'} onClick={this.handleClickSamePage}>Send
+                                Money
+                            </button>
                         </div>
                     </div>
                     <div style={{textAlign: 'center', display: this.state.display ? 'none' : 'block'}} >
@@ -33,6 +57,8 @@ class WalletView extends Component {
                                   onAddMoney={this.props.onAddMoney}
                         />
                     </div>
+                    {this.renderSendMoney()}
+
                 </div>
             </div>
         );

@@ -2,6 +2,7 @@ import WalletView from "./Wallet.view";
 import {shallow} from "enzyme";
 import React from "react";
 import Header from "../Header";
+import SendMoney from "../SendMoney/SendMoney";
 
 describe('WalletView', function () {
         it('should have 1 button for adding and sending money', function () {
@@ -31,6 +32,14 @@ describe('WalletView', function () {
 
             expect(wallet.find('#balance').prop('style').display).toEqual('none');
         });
+    it('should display send money section on clicking send money button', function () {
+        const wallet = shallow(<WalletView/>);
+        const button = wallet.find('#sendMoneyBtn');
+
+        button.simulate('click');
+
+        expect(wallet.find(SendMoney)).toHaveLength(1);
+    });
 
     }
 );
