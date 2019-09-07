@@ -37,6 +37,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/components/*.js",
+      "src/components/*/*.js",
       "!src/serviceWorker.js",
       "!src/index.js"
     ],

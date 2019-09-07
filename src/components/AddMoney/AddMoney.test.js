@@ -22,7 +22,6 @@ describe('AddMoney', function () {
         AddMoneyService.post.mockResolvedValue({amount:50});
         jest.useFakeTimers();
         const mockFn = jest.fn();
-        const mockFn2 = jest.fn();
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} changeDisplay={()=>{}} id={'1234567890'}/>);
         const event = {target: {value: 50}};
 

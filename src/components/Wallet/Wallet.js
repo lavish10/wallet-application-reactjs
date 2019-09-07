@@ -9,7 +9,6 @@ class Wallet extends Component {
     }
 
     setWallet = (response) => {
-        /* istanbul ignore next */
         this.setState({
             name: response.data.name,
             balance: response.data.balance,
@@ -17,15 +16,19 @@ class Wallet extends Component {
         })
     };
     onAddMoney = () => {
-        /* istanbul ignore next */
-        this.componentDidMount();
+        console.log('add moey')
+        this.getWallet();
     };
     componentDidMount = () => {
+        this.getWallet();
+    };
+
+    getWallet() {
         WalletModel.get(this.props.id)
             .then(this.setWallet)
             .catch(function (error) {
             })
-    };
+    }
 
     render() {
         return (
