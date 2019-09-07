@@ -7,17 +7,18 @@ class AddMoney extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            amount: ''
+            amount: '',
+            errorstatus: ''
         }
     }
 
     handleOnChange = (event) => {
         let status = '';
         if (event.target.value < 50) {
-            status = 'Amount must be greater than 50';
+            status = 'Amount must be greater or equal to 50';
         } else if (event.target.value > 50000) {
-            status = 'Amount must be less than 50000';
-        } else if (event.target.value % 50 != 0) {
+            status = 'Amount must be less than or equal to 50000';
+        } else if (event.target.value % 50 !== 0) {
             status = 'Amount must be a multiple of 50';
         }
 
@@ -67,7 +68,8 @@ class AddMoney extends Component {
                                onChange={this.handleOnChange}/><br/>
                 <label id={'success'}><font color={'green'}>{this.state.status}</font></label>
                 <label id={'failure'}><font color={'red'}>{this.state.errorstatus}</font></label><br/>
-                <button className="button" onClick={this.handleOnclick}>Add</button>
+                <button style={{display: this.state.errorstatus.length > 0 ? 'none': ''}} className="button" onClick={this.handleOnclick}>Add
+                </button>
                 <br/><br/>
 
             </div>
