@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import addMoneyService from "../../service/AddMoneyService";
+import './AddMoney.css';
 
 class AddMoney extends Component {
 
@@ -11,12 +12,18 @@ class AddMoney extends Component {
     }
 
     handleOnChange = (event) => {
-        if (!event.target.value) {
-            return;
+        let status = '';
+        if (event.target.value < 50) {
+            status = 'Amount must be greater than 50';
+        } else if (event.target.value > 50000) {
+            status = 'Amount must be less than 50000';
+        } else if (event.target.value % 50 != 0) {
+            status = 'Amount must be a multiple of 50';
         }
+
         this.setState({
             amount: parseFloat(event.target.value),
-            status: ''
+            errorstatus: status
         })
     };
 
@@ -29,7 +36,8 @@ class AddMoney extends Component {
             .then((response) => {
                 this.setState({
                     amount: '',
-                    status: 'You have successfully add ' + response.amount + ' in your wallet'
+                    status: 'You have successfully add ' + response.amount + ' in your wallet',
+                    errorstatus: ''
                 })
                 this.props.onAddMoney();
                 setTimeout(() => {
@@ -37,7 +45,8 @@ class AddMoney extends Component {
                 }, 2000)
             }).catch(error => {
             this.setState({
-                status: error
+                status: '',
+                errorstatus: 'Failed to add money'
             })
         })
     };
@@ -53,9 +62,14 @@ class AddMoney extends Component {
     render() {
         return (
             <div>
-                Amount: <input min={50} max={50000} type={"number"} value={this.state.amount} onChange={this.handleOnChange}/><br/>
-                <button className="button" onClick={this.handleOnclick}>Add Money</button>
-                <label>{this.state.status}</label>
+                Amount: <input min={50} max={50000} type={"number"}
+                               value={this.state.amount}
+                               onChange={this.handleOnChange}/><br/>
+                <label id={'success'}><font color={'green'}>{this.state.status}</font></label>
+                <label id={'failure'}><font color={'red'}>{this.state.errorstatus}</font></label><br/>
+                <button className="button" onClick={this.handleOnclick}>Add</button>
+                <br/><br/>
+
             </div>
         );
     }

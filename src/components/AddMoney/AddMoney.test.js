@@ -28,7 +28,7 @@ describe('AddMoney', function () {
         addMoney.find('button').simulate('click');
         await Promise.resolve();
 
-        expect(addMoney.find('label').text()).toEqual('You have successfully add 50 in your wallet');
+        expect(addMoney.find('#success').text()).toEqual('You have successfully add 50 in your wallet');
     });
 
     it('should update the status to empty if 0 amount is added', async function () {
@@ -41,7 +41,7 @@ describe('AddMoney', function () {
         addMoney.find('button').simulate('click');
         await Promise.resolve();
 
-        expect(addMoney.find('label').text()).toEqual('');
+        expect(addMoney.find('#success').text()).toEqual('');
     });
 
 });

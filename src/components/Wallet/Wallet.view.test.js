@@ -11,7 +11,7 @@ describe('WalletView', function () {
             expect(buttons).toHaveLength(1);
         });
         it('should display the Wallet balance', function () {
-            const wallet = shallow( <WalletView balance={100}/>);
+            const wallet = shallow(<WalletView balance={100}/>);
             const balance = wallet.find('h2');
 
             expect(balance).toHaveLength(1);
@@ -23,14 +23,5 @@ describe('WalletView', function () {
 
             expect(header.props().name).toEqual('someName');
         });
-        it('should hide the balance on clicking add money button', function () {
-            const wallet = shallow(<WalletView/>);
-            const button = wallet.find('button');
-
-            button.simulate('click');
-
-            expect(wallet.find('#balance').prop('style').display).toEqual('none');
-        });
-
     }
 );
