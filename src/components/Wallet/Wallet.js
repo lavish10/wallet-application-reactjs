@@ -11,6 +11,7 @@ class Wallet extends Component {
     setWallet = (response) => {
         /* istanbul ignore next */
         this.setState({
+            id: response.data.id,
             name: response.data.name,
             balance: response.data.balance,
             phoneNumber: response.data.phoneNumber
@@ -30,6 +31,7 @@ class Wallet extends Component {
     render() {
         return (
             <WalletView name={this.state.name}
+                        walletId={this.state.id}
                         phoneNumber={this.state.phoneNumber}
                         balance={this.state.balance}
                         onAddMoney={this.onAddMoney}
