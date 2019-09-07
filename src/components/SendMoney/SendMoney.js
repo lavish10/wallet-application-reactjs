@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
 
 class SendMoney extends Component {
+
     render() {
         return (
             <div>
-                <h1>Send Money</h1>
+                <h2>Send Money</h2>
+                <label>Phone Number</label><input type="text" name="phoneNumber"/><br/>
+                <label>Amount</label><input type="text" name="amount"/><br/>
+                <label>Remarks</label><input type="text" name="remarks"/><br/>
+                <button className="button">Send</button>
             </div>
         );
     }

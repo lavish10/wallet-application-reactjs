@@ -65,7 +65,7 @@ class WalletView extends Component {
                             </button>
                         </div>
                     </div>
-                    <div style={{textAlign: 'center', margin: '0 auto', width: '70%', display: 'block'}}>
+                    <div style={{margin: '0 auto', width: '70%', display: 'block'}}>
                         {this.renderAddMoney()}
                         {this.renderSendMoney()}
                     </div>
