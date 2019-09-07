@@ -23,5 +23,14 @@ describe('WalletView', function () {
 
             expect(header.props().name).toEqual('someName');
         });
+
+        it('should hide when button is clicked', function () {
+            const wallet = shallow(<WalletView name='someName'/>);
+            const header = wallet.find(Header);
+
+            wallet.find('#b1').simulate('click');
+
+            expect(header.props().name).toEqual('someName');
+        });
     }
 );
