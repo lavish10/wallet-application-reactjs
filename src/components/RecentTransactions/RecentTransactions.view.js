@@ -43,7 +43,7 @@ const RecentTransactionsView = (props) => {
                 defaultSorted={defaultSorted}
                 bootstrap4
                 keyField='id'
-                data={ props.rows }
+                data={ props.transactions}
                 columns={ columns }
                 rowStyle={rowStyle}
             />

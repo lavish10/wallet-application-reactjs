@@ -18,13 +18,6 @@ class WalletView extends Component {
         })
     };
 
-    renderRecentTransaction = () => {
-        if (this.props.phoneNumber) {
-            return <RecentTransactions id={this.props.phoneNumber}/>
-        }
-
-    }
-
     render() {
         return (
             <div>
@@ -44,7 +37,7 @@ class WalletView extends Component {
                         />
                     </div>
                     <div>
-                        {this.renderRecentTransaction()}
+                        <RecentTransactions transactions={this.props.transactions}/>
                     </div>
                 </div>
             </div>

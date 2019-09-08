@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import WalletView from "./Wallet.view";
 import WalletModel from "./Wallet.model";
+import RecentTransactionService from "../../service/RecentTransactionService";
+import dateTimeFormatter from "../utils/dateTimeFormatter";
 
 class Wallet extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            transactions:[]
+        }
     }
 
     setWallet = (response) => {
@@ -23,7 +27,24 @@ class Wallet extends Component {
     componentDidMount = () => {
         WalletModel.get(this.props.id)
             .then(this.setWallet)
-            .catch(function (error) {
+            .then(() => {
+                RecentTransactionService.get(this.props.id)
+                    .then(data => {
+                        this.setState({
+                            transactions: data.map(transaction => {
+                                return {
+                                    id: transaction.id,
+                                    remarks: !transaction.remarks ? "Self" : transaction.remarks,
+                                    type: transaction.type,
+                                    amount: transaction.amount,
+                                    createdAt: dateTimeFormatter(transaction.createdAt)
+                                }
+                            })
+                        })
+                    })
+            })
+            .catch(error => {
+                console.log(error);
             })
     };
 
@@ -33,6 +54,7 @@ class Wallet extends Component {
                         phoneNumber={this.state.phoneNumber}
                         balance={this.state.balance}
                         onAddMoney={this.onAddMoney}
+                        transactions={this.state.transactions}
             />
         );
     }
