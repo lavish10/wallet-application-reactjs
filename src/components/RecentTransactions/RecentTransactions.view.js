@@ -1,53 +1,54 @@
 import React from 'react';
-import {MDBDataTable} from 'mdbreact';
 import '../../App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 const RecentTransactionsView = (props) => {
-    const data = {
-        columns: [
-            {
-                label: 'Remarks',
-                field: 'remarks',
-                sort: 'asc',
-                width: 150
-            },
-            {
-                label: 'Type',
-                field: 'type',
-                sort: 'asc',
-                width: 270
-            },
-            {
-                label: '₹ Amount',
-                field: 'amount',
-                sort: 'asc',
-                width: 200
-            },
-            {
-                label: 'Date',
-                field: 'createdAt',
-                sort: 'asc',
-                width: 100
-            }
-        ],
-        rows: props.rows
+    const columns = [
+        {
+            dataField: 'remarks',
+            text:'Remarks',
+            sort:true
+        },
+        {
+            dataField: 'type',
+            text:'Type',
+            sort:true
+        },
+        {
+            dataField: 'amount',
+            text:'Amount',
+            sort:true
+        },
+        {
+            dataField: 'createdAt',
+            text:'Date',
+            sort:true
+        }
+    ];
+    const defaultSorted = [{
+        dataField: 'createdAt',
+        order: 'desc'
+    }];
+    const rowStyle = (row, rowIndex) => {
+        return row.type === 'CREDIT'
+            ?{ backgroundColor: '#80bf83',color:'white' }
+            : { backgroundColor: '#c25c51',color:'white' };
     };
+    return (<div>
+            <BootstrapTable
+                defaultSorted={defaultSorted}
+                bootstrap4
+                keyField='id'
+                data={ props.rows }
+                columns={ columns }
+                rowStyle={rowStyle}
+            />
+        </div>
 
-    return (
-        <MDBDataTable
-            striped
-            bordered ={false}
-            hover
-            data={data}
-            entries={7}
-            info={false}
-            searching={false}
-            displayEntries={false}
-            paging={false}
-        />
     );
 };
 

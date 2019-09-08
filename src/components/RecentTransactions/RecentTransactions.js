@@ -17,6 +17,7 @@ class RecentTransactions extends Component {
                 this.setState({
                     transactions: data.map(transaction => {
                         return {
+                            id: transaction.id,
                             remarks: !transaction.remarks?"Self":transaction.remarks,
                             type: transaction.type,
                             amount: transaction.amount,
