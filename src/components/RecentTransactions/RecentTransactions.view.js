@@ -12,8 +12,10 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'remarks',
             text:'Remarks',
-            sort:true
-
+            sort:true,
+            headerStyle: (colum, colIndex) => {
+                return { width: 'calc(22em * 0.5)', textAlign: 'center' };
+            }
         },
         {
             dataField: 'type',
@@ -41,7 +43,7 @@ const RecentTransactionsView = (props) => {
             ?{ backgroundColor: '#80bf83',color:'white' }
             : { backgroundColor: '#c25c51',color:'white' };
     };
-    return (<div>
+    return (
             <BootstrapTable
                 defaultSorted={defaultSorted}
                 bootstrap4
@@ -51,8 +53,6 @@ const RecentTransactionsView = (props) => {
                 rowStyle={rowStyle}
                 bordered={false}
             />
-        </div>
-
     );
 };
 
