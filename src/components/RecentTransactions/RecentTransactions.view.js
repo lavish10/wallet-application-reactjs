@@ -11,27 +11,27 @@ const RecentTransactionsView = (props) => {
     const columns = [
         {
             dataField: 'remarks',
-            text:'Remarks',
-            sort:true,
+            text: 'Remarks',
+            sort: true,
             headerStyle: (colum, colIndex) => {
-                return { width: 'calc(22em * 0.5)', textAlign: 'center' };
+                return {width: 'calc(22em * 0.5)', textAlign: 'center'};
             }
         },
         {
             dataField: 'type',
-            text:'Type',
-            sort:true
+            text: 'Type',
+            sort: true
         },
         {
             dataField: 'amount',
-            text:'₹ Amount',
-            sort:true
+            text: '₹ Amount',
+            sort: true
         },
         {
             dataField: 'createdAt',
-            text:'Date',
-            sort:true,
-            style:{fontWeight:'bold',color:'black'}
+            text: 'Date',
+            sort: true,
+            style: {fontWeight: 'bold', color: 'black'}
         }
     ];
     const defaultSorted = [{
@@ -40,19 +40,19 @@ const RecentTransactionsView = (props) => {
     }];
     const rowStyle = (row) => {
         return row.type === 'CREDIT'
-            ?{ backgroundColor: '#80bf83',color:'white' }
-            : { backgroundColor: '#c25c51',color:'white' };
+            ? {backgroundColor: '#80bf83', color: 'white'}
+            : {backgroundColor: '#c25c51', color: 'white'};
     };
     return (
-            <BootstrapTable
-                defaultSorted={defaultSorted}
-                bootstrap4
-                keyField='id'
-                data={ props.transactions}
-                columns={ columns }
-                rowStyle={rowStyle}
-                bordered={false}
-            />
+        <BootstrapTable
+            defaultSorted={defaultSorted}
+            bootstrap4
+            keyField='id'
+            data={props.transactions}
+            columns={columns}
+            rowStyle={rowStyle}
+            bordered={false}
+        />
     );
 };
 

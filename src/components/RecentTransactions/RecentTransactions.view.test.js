@@ -6,7 +6,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 describe('RecentTransactionViewTest', function () {
     it('should be able to render the table if there is a row', function () {
         const transactions = [{
-            id:1,
+            id: 1,
             remarks: null,
             type: "CREDIT",
             amount: 50,
@@ -19,7 +19,7 @@ describe('RecentTransactionViewTest', function () {
 
     it('should be able to render the table for credit', function () {
         const transactions = [{
-            id:1,
+            id: 1,
             remarks: null,
             type: "CREDIT",
             amount: 50,
@@ -33,7 +33,7 @@ describe('RecentTransactionViewTest', function () {
 
     it('should be able to render the table for debit', function () {
         const transactions = [{
-            id:1,
+            id: 1,
             remarks: null,
             type: "DEBIT",
             amount: 50,

@@ -8,20 +8,22 @@ class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            transactions:[]
+            transactions: []
         }
     }
 
     setWallet = (response) => {
+        /* istanbul ignore next */
         this.setState({
+            id: response.data.id,
             name: response.data.name,
             balance: response.data.balance,
             phoneNumber: response.data.phoneNumber
         })
     };
-    onAddMoney = () => {
-        console.log('add moey')
-        this.getWallet();
+    onUpdateBalance = () => {
+        /* istanbul ignore next */
+        this.componentDidMount();
     };
     componentDidMount = () => {
         this.getWallet();
@@ -54,10 +56,11 @@ class Wallet extends Component {
     render() {
         return (
             <WalletView name={this.state.name}
+                        walletId={this.state.id}
                         phoneNumber={this.state.phoneNumber}
                         balance={this.state.balance}
-                        onAddMoney={this.onAddMoney}
                         transactions={this.state.transactions}
+                        onUpdateBalance={this.onUpdateBalance}
             />
         );
     }

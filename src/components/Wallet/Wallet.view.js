@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
+import SendMoney from "../SendMoney/SendMoney";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
 
 class WalletView extends Component {
@@ -8,14 +9,45 @@ class WalletView extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            display: true
+            displayAddMoney: false,
+            displaySendMoney: false
         }
     }
 
-    handleClick = () => {
+    handleClickAddMoney = () => {
         this.setState({
-            display: !this.state.display
+            displayAddMoney: !this.state.displayAddMoney,
+            displaySendMoney: false
         })
+    };
+    handleClickSendMoney = () => {
+        this.setState({
+            displaySendMoney: !this.state.displaySendMoney,
+            displayAddMoney: false
+        });
+    };
+
+    renderSendMoney = () => {
+        if (!this.state.displaySendMoney) {
+            return;
+        }
+        return (
+            <SendMoney id={this.props.walletId}
+                       changeDisplay={this.handleClickSendMoney}
+                       onSendMoney={this.props.onUpdateBalance}
+            />
+        );
+    };
+    renderAddMoney = () => {
+        if (!this.state.displayAddMoney) {
+            return;
+        }
+        return (
+            <AddMoney id={this.props.walletId}
+                      changeDisplay={this.handleClickAddMoney}
+                      onAddMoney={this.props.onUpdateBalance}
+            />
+        );
     };
 
     render() {
@@ -23,28 +55,29 @@ class WalletView extends Component {
             <div>
                 <Header name={this.props.name}/>
                 <div className={'container'} style={{marginTop: '100px'}}>
-                    <div id={'balance'} style={{textAlign: 'center'}}
+                    <div id={'balance'} style={{textAlign: 'center', display: 'block'}}
                          className="container">
                         <h2>Balance : ₹ {this.props.balance}</h2>
                         <div>
-                            <button id={'b1'} className={'button'} onClick={this.handleClick}>Add Money</button>
+                            <button id={'addMoneyBtn'} className={'button'} onClick={this.handleClickAddMoney}>Add Money
+                            </button>
+                            <button id={'sendMoneyBtn'} className={'button'} onClick={this.handleClickSendMoney}>Send
+                                Money
+                            </button>
                         </div>
                     </div>
-                    <br/>
-                    <br/>
-                    <div style={{textAlign: 'center', display: this.state.display ? 'none' : 'block'}} >
-                        <AddMoney id={this.props.phoneNumber}
-                                  changeDisplay={this.handleClick}
-                                  onAddMoney={this.props.onAddMoney}
-                        />
-                    </div>
-                    <div>
-                        <RecentTransactions transactions={this.props.transactions}/>
+                    <div style={{margin: '0 auto', width: '70%', display: 'block'}}>
+                        {this.renderAddMoney()}
+                        {this.renderSendMoney()}
+                        <div>
+                            <RecentTransactions transactions={this.props.transactions}/>
+                        </div>
                     </div>
                 </div>
             </div>
         );
     }
+
 }
 
 export default WalletView;

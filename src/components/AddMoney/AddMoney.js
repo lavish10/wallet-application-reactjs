@@ -32,14 +32,14 @@ class AddMoney extends Component {
         if (!this.state.amount) {
             return;
         }
-        const data = {type: 'CREDIT', amount: this.state.amount}
+        const data = {type: 'CREDIT', amount: this.state.amount};
         addMoneyService.post(this.props.id, data)
             .then((response) => {
                 this.setState({
                     amount: '',
                     status: 'You have successfully add ' + response.amount + ' in your wallet',
                     errorstatus: ''
-                })
+                });
                 this.props.onAddMoney();
                 setTimeout(() => {
                     this.extracted();
@@ -56,7 +56,7 @@ class AddMoney extends Component {
         this.setState({
             amount: '',
             status: ''
-        })
+        });
         this.props.changeDisplay()
     }
 
@@ -68,7 +68,8 @@ class AddMoney extends Component {
                                onChange={this.handleOnChange}/><br/>
                 <label id={'success'}><font color={'green'}>{this.state.status}</font></label>
                 <label id={'failure'}><font color={'red'}>{this.state.errorstatus}</font></label><br/>
-                <button style={{display: this.state.errorstatus.length > 0 ? 'none': ''}} className="button" onClick={this.handleOnclick}>Add
+                <button style={{display: this.state.errorstatus.length > 0 ? 'none' : ''}} className="button"
+                        onClick={this.handleOnclick}>Add
                 </button>
                 <br/><br/>
 

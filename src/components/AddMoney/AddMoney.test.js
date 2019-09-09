@@ -22,7 +22,8 @@ describe('AddMoney', function () {
         AddMoneyService.post.mockResolvedValue({amount:50});
         jest.useFakeTimers();
         const mockFn = jest.fn();
-        const addMoney = shallow(<AddMoney onAddMoney={mockFn} changeDisplay={()=>{}} id={'1234567890'}/>);
+        const addMoney = shallow(<AddMoney onAddMoney={mockFn} changeDisplay={() => {
+        }} id={'1234567890'}/>);
         const event = {target: {value: 50}};
 
         addMoney.find('input').simulate('change',event);
@@ -33,13 +34,14 @@ describe('AddMoney', function () {
     });
 
     it('should remove the updated status 2 seconds after successful credit of money', async function () {
-        AddMoneyService.post.mockResolvedValue({amount:50});
+        AddMoneyService.post.mockResolvedValue({amount: 50});
         jest.useFakeTimers();
         const mockFn = jest.fn();
-        const addMoney = shallow(<AddMoney onAddMoney={mockFn} changeDisplay={()=>{}} id={'1234567890'}/>);
+        const addMoney = shallow(<AddMoney onAddMoney={mockFn} changeDisplay={() => {
+        }} id={'1234567890'}/>);
         const event = {target: {value: 50}};
 
-        addMoney.find('input').simulate('change',event);
+        addMoney.find('input').simulate('change', event);
         addMoney.find('button').simulate('click');
         await Promise.resolve();
         jest.runAllTimers();
@@ -52,7 +54,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 5}};
 
-        addMoney.find('input').simulate('change',event);
+        addMoney.find('input').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be greater or equal to 50');
     });
@@ -62,7 +64,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 60000}};
 
-        addMoney.find('input').simulate('change',event);
+        addMoney.find('input').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be less than or equal to 50000');
     });
@@ -72,7 +74,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 623}};
 
-        addMoney.find('input').simulate('change',event);
+        addMoney.find('input').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be a multiple of 50');
     });
