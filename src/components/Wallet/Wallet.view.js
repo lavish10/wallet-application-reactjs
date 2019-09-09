@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
+import RecentTransactions from "../RecentTransactions/RecentTransactions";
 
 class WalletView extends Component {
 
@@ -10,11 +11,13 @@ class WalletView extends Component {
             display: true
         }
     }
+
     handleClick = () => {
         this.setState({
             display: !this.state.display
         })
     };
+
     render() {
         return (
             <div>
@@ -35,11 +38,13 @@ class WalletView extends Component {
                                   onAddMoney={this.props.onAddMoney}
                         />
                     </div>
+                    <div>
+                        <RecentTransactions transactions={this.props.transactions}/>
+                    </div>
                 </div>
             </div>
         );
     }
-
 }
 
 export default WalletView;
