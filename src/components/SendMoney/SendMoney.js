@@ -69,7 +69,12 @@ class SendMoney extends Component {
         if (this.checkErrorCount()) {
             return;
         }
-        const data = {type: 'DEBIT', amount: this.state.amount, receiverPhoneNumber: this.state.phoneNumber};
+        const data = {
+            type: 'DEBIT',
+            amount: this.state.amount,
+            receiverPhoneNumber: this.state.phoneNumber,
+            remarks: this.state.remarks
+        };
         sendMoneyService.sendMoney(this.props.id, data)
             .then((response) => {
                 this.setState({
