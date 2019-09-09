@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import sendMoneyService from "../../service/SendMoneyService";
 import Validators from '../utils/Validators';
-import {Alert, Button, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap';
+import {Alert, Button, Card, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap';
 import '../../App.css';
 
 class SendMoney extends Component {
@@ -100,69 +100,74 @@ class SendMoney extends Component {
     render() {
         return (
             <div>
-                <Container>
-                    <h2>Send Money</h2>
-                    <Row>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-default">
-                                    Phone Number</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                                name="phoneNumber"
-                                value={this.state.phoneNumber}
-                                onChange={this.onChangeHandler}
-                                onBlur={this.onPhoneNumberBlurHandler} required
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                            />
-                        </InputGroup>
-                        <span className="error">{this.state.errors.phoneNumberError}</span>
-                    </Row>
-                    <Row>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-default">
-                                    Amount</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                                name="amount" value={this.state.amount}
-                                onChange={this.onChangeHandler}
-                                onBlur={this.onAmountBlurHandler} required
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                            />
-                        </InputGroup>
-                        <span className="error">{this.state.errors.amountError}</span>
-                    </Row>
-                    <Row>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-default">
-                                    Remarks</InputGroup.Text>
-                            </InputGroup.Prepend>
-                            <FormControl
-                                name="remarks" value={this.state.remarks}
-                                onChange={this.onChangeHandler}
-                                onBlur={this.onRemarksBlurHandler} required
-                                aria-label="Default"
-                                aria-describedby="inputGroup-sizing-default"
-                            />
-                        </InputGroup>
-                        <span className="error">{this.state.errors.remarksError}</span>
-                    </Row>
-                    <Row>
-                        <Col md={{span: 3, offset: 5}}>
-                            <Button variant="success" onClick={this.handleSendMoney}
-                                    disabled={this.checkErrorCount()}>Send</Button>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Alert variant="danger" show={this.state.status} id="response">
-                            {this.state.status}
-                        </Alert>
-                    </Row>
-                </Container>
+                <Card>
+                    <Card.Body>
+                        <Container>
+
+                            <h2>Send Money</h2>
+                            <Row>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroup-sizing-default">
+                                            Phone Number</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        name="phoneNumber"
+                                        value={this.state.phoneNumber}
+                                        onChange={this.onChangeHandler}
+                                        onBlur={this.onPhoneNumberBlurHandler} required
+                                        aria-label="Default"
+                                        aria-describedby="inputGroup-sizing-default"
+                                    />
+                                </InputGroup>
+                                <span className="error">{this.state.errors.phoneNumberError}</span>
+                            </Row>
+                            <Row>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroup-sizing-default">
+                                            Amount</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        name="amount" value={this.state.amount}
+                                        onChange={this.onChangeHandler}
+                                        onBlur={this.onAmountBlurHandler} required
+                                        aria-label="Default"
+                                        aria-describedby="inputGroup-sizing-default"
+                                    />
+                                </InputGroup>
+                                <span className="error">{this.state.errors.amountError}</span>
+                            </Row>
+                            <Row>
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Prepend>
+                                        <InputGroup.Text id="inputGroup-sizing-default">
+                                            Remarks</InputGroup.Text>
+                                    </InputGroup.Prepend>
+                                    <FormControl
+                                        name="remarks" value={this.state.remarks}
+                                        onChange={this.onChangeHandler}
+                                        onBlur={this.onRemarksBlurHandler} required
+                                        aria-label="Default"
+                                        aria-describedby="inputGroup-sizing-default"
+                                    />
+                                </InputGroup>
+                                <span className="error">{this.state.errors.remarksError}</span>
+                            </Row>
+                            <Row>
+                                <Col md={{span: 3, offset: 5}}>
+                                    <Button variant="success" onClick={this.handleSendMoney}
+                                            disabled={this.checkErrorCount()}>Send</Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Alert variant="danger" show={this.state.status} id="response">
+                                    {this.state.status}
+                                </Alert>
+                            </Row>
+                        </Container>
+                    </Card.Body>
+                </Card>
             </div>
         );
     }
