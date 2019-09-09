@@ -33,10 +33,13 @@ class Wallet extends Component {
         WalletModel.get(this.props.id)
             .then(this.setWallet)
             .then(() => {
+                /* istanbul ignore next */
                 RecentTransactionService.get(this.props.id)
                     .then(data => {
+                        /* istanbul ignore next */
                         this.setState({
-                            transactions: data.splice(data.length-7).map(transaction => {
+                            transactions: data.splice(data.length - 7).map(transaction => {
+                                /* istanbul ignore next */
                                 return {
                                     id: transaction.id,
                                     remarks: !transaction.remarks ? "Self" : transaction.remarks,
