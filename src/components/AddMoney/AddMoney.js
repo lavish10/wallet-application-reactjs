@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import addMoneyService from "../../service/AddMoneyService";
 import './AddMoney.css';
+import {Alert, Button, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap';
 
 class AddMoney extends Component {
 
@@ -8,7 +9,8 @@ class AddMoney extends Component {
         super(props, context);
         this.state = {
             amount: '',
-            errorstatus: ''
+            errorstatus: '',
+            status: ''
         }
     }
 
@@ -43,7 +45,7 @@ class AddMoney extends Component {
                 this.props.onAddMoney();
                 setTimeout(() => {
                     this.extracted();
-                }, 2000)
+                }, 20000)
             }).catch(error => {
             this.setState({
                 status: '',
@@ -63,16 +65,37 @@ class AddMoney extends Component {
     render() {
         return (
             <div>
-                Amount: <input min={50} max={50000} type={"number"}
-                               value={this.state.amount}
-                               onChange={this.handleOnChange}/><br/>
-                <label id={'success'}><font color={'green'}>{this.state.status}</font></label>
-                <label id={'failure'}><font color={'red'}>{this.state.errorstatus}</font></label><br/>
-                <button style={{display: this.state.errorstatus.length > 0 ? 'none' : ''}} className="button"
-                        onClick={this.handleOnclick}>Add
-                </button>
-                <br/><br/>
-
+                <Container>
+                    <h2>Add Money</h2>
+                    <Row>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Prepend>
+                                <InputGroup.Text id="inputGroup-sizing-default">
+                                    Amount: </InputGroup.Text>
+                            </InputGroup.Prepend>
+                            <FormControl
+                                min={50} max={50000} type={"number"}
+                                value={this.state.amount}
+                                name="amount"
+                                onChange={this.handleOnChange}
+                                aria-label="Default"
+                                aria-describedby="inputGroup-sizing-default"
+                            />
+                        </InputGroup>
+                    </Row>
+                    <Alert variant="success" show={this.state.status} id="success">
+                        {this.state.status}
+                    </Alert>
+                    <Alert variant="danger" show={this.state.errorstatus} id="failure">
+                        {this.state.errorstatus}
+                    </Alert>
+                    <Row>
+                        <Col md={{span: 3, offset: 5}}>
+                            <Button variant="success" onClick={this.handleOnclick}
+                                    disabled={this.state.errorstatus.length > 0}>Add</Button>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }
