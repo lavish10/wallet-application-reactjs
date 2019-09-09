@@ -95,3 +95,7 @@ tbody + thead {
 .error {
     color: darkred;
 }
+
+.input-group-text {
+    min-width: 150px;
+}
