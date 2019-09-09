@@ -5,6 +5,7 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
+import './RecentTransactions.css'
 
 const RecentTransactionsView = (props) => {
     const columns = [
@@ -26,7 +27,8 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'createdAt',
             text:'Date',
-            sort:true
+            sort:true,
+            style:{fontWeight:'bold',color:'black'}
         }
     ];
     const defaultSorted = [{
