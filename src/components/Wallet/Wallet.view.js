@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
 import SendMoney from "../SendMoney/SendMoney";
+import RecentTransactions from "../RecentTransactions/RecentTransactions";
 
 class WalletView extends Component {
 
@@ -68,8 +69,10 @@ class WalletView extends Component {
                     <div style={{margin: '0 auto', width: '70%', display: 'block'}}>
                         {this.renderAddMoney()}
                         {this.renderSendMoney()}
+                        <div>
+                            <RecentTransactions transactions={this.props.transactions}/>
+                        </div>
                     </div>
-
                 </div>
             </div>
         );
