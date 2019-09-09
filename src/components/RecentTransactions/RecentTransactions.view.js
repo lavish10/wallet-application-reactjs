@@ -14,7 +14,7 @@ const RecentTransactionsView = (props) => {
             text: 'Remarks',
             sort: true,
             headerStyle: (colum, colIndex) => {
-                return {width: 'calc(22em * 0.5)', textAlign: 'center'};
+                return {width: '12.5em', textAlign: 'left'};
             }
         },
         {
@@ -43,12 +43,18 @@ const RecentTransactionsView = (props) => {
             ? {backgroundColor: '#80bf83', color: 'white'}
             : {backgroundColor: '#c25c51', color: 'white'};
     };
+    /*const pagination = paginationFactory({
+        sizePerPage: 7,
+        hideSizePerPage: true
+    });*/
+
     return (
         <BootstrapTable
             defaultSorted={defaultSorted}
             bootstrap4
             keyField='id'
             data={props.transactions}
+            /* pagination = {pagination}*/
             columns={columns}
             rowStyle={rowStyle}
             bordered={false}

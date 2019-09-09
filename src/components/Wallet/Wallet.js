@@ -36,10 +36,10 @@ class Wallet extends Component {
                 RecentTransactionService.get(this.props.id)
                     .then(data => {
                         this.setState({
-                            transactions: data.map(transaction => {
+                            transactions: data.splice(data.length-7).map(transaction => {
                                 return {
                                     id: transaction.id,
-                                    remarks: !transaction.remarks ? "Self Transaction of crediting money from my bank account to my wallet and also use for various purpose of shopping, movie, snacks" : transaction.remarks,
+                                    remarks: !transaction.remarks ? "Self" : transaction.remarks,
                                     type: transaction.type,
                                     amount: parseFloat(transaction.amount).toFixed(2),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
