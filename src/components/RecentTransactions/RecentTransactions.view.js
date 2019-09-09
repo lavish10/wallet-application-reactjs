@@ -13,6 +13,7 @@ const RecentTransactionsView = (props) => {
             dataField: 'remarks',
             text:'Remarks',
             sort:true
+
         },
         {
             dataField: 'type',
@@ -21,7 +22,7 @@ const RecentTransactionsView = (props) => {
         },
         {
             dataField: 'amount',
-            text:'Amount',
+            text:'₹ Amount',
             sort:true
         },
         {
@@ -48,6 +49,7 @@ const RecentTransactionsView = (props) => {
                 data={ props.transactions}
                 columns={ columns }
                 rowStyle={rowStyle}
+                bordered={false}
             />
         </div>
 
