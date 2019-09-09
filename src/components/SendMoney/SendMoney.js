@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import sendMoneyService from "../../service/SendMoneyService";
 import Validators from '../utils/Validators';
-import {Button, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap';
+import {Alert, Button, Col, Container, FormControl, InputGroup, Row} from 'react-bootstrap';
 import '../../App.css';
 
 class SendMoney extends Component {
@@ -158,7 +158,9 @@ class SendMoney extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <span id="response">{this.state.status}</span>
+                        <Alert variant="danger" show={this.state.status} id="response">
+                            {this.state.status}
+                        </Alert>
                     </Row>
                 </Container>
             </div>

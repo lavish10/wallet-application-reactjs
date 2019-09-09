@@ -97,6 +97,6 @@ describe('send money simulation tests', function () {
         sendMoney.find('input[name="remarks"]').simulate('change', remarksEvent);
         sendMoney.find('button').simulate('click');
         await Promise.resolve();
-        expect(sendMoney.find('span#response').text()).toEqual(`Insufficient Balance in Wallet`);
+        expect(sendMoney.find('#response').text()).toEqual(`Insufficient Balance in Wallet`);
     });
 });
