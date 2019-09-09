@@ -39,7 +39,7 @@ class Wallet extends Component {
                             transactions: data.map(transaction => {
                                 return {
                                     id: transaction.id,
-                                    remarks: !transaction.remarks ? "Self Transaction of crediting money from my bank account to my wallet and also use for various purpose of shopping, movie, snacks" : transaction.remarks,
+                                    remarks: !transaction.remarks ? "Self" : transaction.remarks,
                                     type: transaction.type,
                                     amount: parseFloat(transaction.amount).toFixed(2),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
