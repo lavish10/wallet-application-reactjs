@@ -91,3 +91,7 @@ tbody + thead {
         transform: rotate(360deg);
     }
 }
+
+.error {
+    color: darkred;
+}
