@@ -2,6 +2,7 @@ import {shallow} from "enzyme";
 import React from "react";
 import SendMoney from "./SendMoney";
 import SendMoneyService from "../../service/SendMoneyService";
+import {InputGroup} from 'react-bootstrap';
 
 jest.mock('axios');
 jest.mock('../../service/SendMoneyService');
@@ -10,37 +11,37 @@ describe('Send Money Render tests', function () {
     it('should display Send money button', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('button')).toHaveLength(1);
+        expect(addMoney.find('Button')).toHaveLength(1);
     });
     it('should display Phone Number label', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('label').at(0).text()).toEqual("Phone Number");
+        expect(addMoney.find(InputGroup.Text).at(0).text()).toEqual("Phone Number");
     });
     it('should display Amount label', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('label').at(1).text()).toEqual("Amount");
+        expect(addMoney.find(InputGroup.Text).at(1).text()).toEqual("Amount");
     });
     it('should display Remarks label', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('label').at(2).text()).toEqual("Remarks");
+        expect(addMoney.find(InputGroup.Text).at(2).text()).toEqual("Remarks");
     });
     it('should display Phone Number field', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('input[name="phoneNumber"]')).toHaveLength(1);
+        expect(addMoney.find('FormControl[name="phoneNumber"]')).toHaveLength(1);
     });
     it('should display Amount field', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('input[name="amount"]')).toHaveLength(1);
+        expect(addMoney.find('FormControl[name="amount"]')).toHaveLength(1);
     });
     it('should display Remarks field', function () {
         const addMoney = shallow(<SendMoney/>);
 
-        expect(addMoney.find('input[name="remarks"]')).toHaveLength(1);
+        expect(addMoney.find('FormControl[name="remarks"]')).toHaveLength(1);
     });
 });
 describe('send money simulation tests', function () {
@@ -96,6 +97,6 @@ describe('send money simulation tests', function () {
         sendMoney.find('input[name="remarks"]').simulate('change', remarksEvent);
         sendMoney.find('button').simulate('click');
         await Promise.resolve();
-        expect(sendMoney.find('span#response').text()).toEqual(`Insufficient Balance in Wallet`);
+        expect(sendMoney.find('#response').text()).toEqual(`Insufficient Balance in Wallet`);
     });
 });

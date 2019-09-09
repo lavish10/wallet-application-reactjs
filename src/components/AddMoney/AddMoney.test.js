@@ -9,13 +9,13 @@ describe('AddMoney', function () {
     it('should display input box for amount', function () {
         const addMoney = shallow(<AddMoney/>);
 
-        expect(addMoney.find('input')).toHaveLength(1);
+        expect(addMoney.find('FormControl[name="amount"]')).toHaveLength(1);
     });
 
     it('should display button for add money', function () {
         const addMoney = shallow(<AddMoney/>);
 
-        expect(addMoney.find('button')).toHaveLength(1);
+        expect(addMoney.find('Button')).toHaveLength(1);
     });
 
     it('should update the status after successful credit of money', async function () {
@@ -26,8 +26,8 @@ describe('AddMoney', function () {
         }} id={'1234567890'}/>);
         const event = {target: {value: 50}};
 
-        addMoney.find('input').simulate('change',event);
-        addMoney.find('button').simulate('click');
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('Button').simulate('click');
         await Promise.resolve();
 
         expect(addMoney.find('#success').text()).toEqual('You have successfully add 50 in your wallet');
@@ -41,8 +41,8 @@ describe('AddMoney', function () {
         }} id={'1234567890'}/>);
         const event = {target: {value: 50}};
 
-        addMoney.find('input').simulate('change', event);
-        addMoney.find('button').simulate('click');
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('Button').simulate('click');
         await Promise.resolve();
         jest.runAllTimers();
 
@@ -54,7 +54,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 5}};
 
-        addMoney.find('input').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be greater or equal to 50');
     });
@@ -64,7 +64,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 60000}};
 
-        addMoney.find('input').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be less than or equal to 50000');
     });
@@ -74,7 +74,7 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 623}};
 
-        addMoney.find('input').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be a multiple of 50');
     });
@@ -85,8 +85,8 @@ describe('AddMoney', function () {
         const addMoney = shallow(<AddMoney onAddMoney={mockFn} id={'1234567890'}/>);
         const event = {target: {value: 0}};
 
-        addMoney.find('input').simulate('change',event);
-        addMoney.find('button').simulate('click');
+        addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('Button').simulate('click');
         await Promise.resolve();
 
         expect(addMoney.find('#success').text()).toEqual('');
