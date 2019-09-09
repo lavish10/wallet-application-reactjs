@@ -12,7 +12,8 @@ class SendMoney extends Component {
             phoneNumber: '',
             amount: '',
             remarks: '',
-            status: '',
+            successStatus: '',
+            errorStatus: '',
             errors: {}
         }
     }
@@ -65,7 +66,8 @@ class SendMoney extends Component {
     extracted = () => {
         /* istanbul ignore next */
         this.setState({
-            status: ''
+            successStatus: '',
+            errorStatus: ''
         });
     };
     checkErrorCount = () => {
@@ -91,7 +93,8 @@ class SendMoney extends Component {
                     phoneNumber: '',
                     remarks: '',
                     errors: {},
-                    status: 'You have successfully transferred ' + response.amount + ' in ' + response.wallet.name + ' wallet'
+                    successStatus: 'You have successfully transferred ₹ ' + response.amount + '.',
+                    errorStatus: ''
                 });
                 this.props.onSendMoney();
                 /* istanbul ignore next */
@@ -101,7 +104,7 @@ class SendMoney extends Component {
             }).catch(error => {
             /* istanbul ignore next */
             this.setState({
-                status: error.response.data.message
+                errorStatus: error.response.data.message
             })
         });
     };
@@ -125,11 +128,14 @@ class SendMoney extends Component {
                                         value={this.state.phoneNumber}
                                         onChange={this.onChangeHandler}
                                         onBlur={this.onPhoneNumberBlurHandler} required
+                                        isInvalid={this.state.errors.phoneNumberError}
+                                        isValid={!Validators.checkValidPhoneNumber(this.state.phoneNumber)}
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
+                                    <FormControl.Feedback
+                                        type="invalid">{this.state.errors.phoneNumberError}</FormControl.Feedback>
                                 </InputGroup>
-                                <span className="error">{this.state.errors.phoneNumberError}</span>
                             </Row>
                             <Row>
                                 <InputGroup className="mb-3">
@@ -141,11 +147,14 @@ class SendMoney extends Component {
                                         name="amount" value={this.state.amount}
                                         onChange={this.onChangeHandler}
                                         onBlur={this.onAmountBlurHandler} required
+                                        isInvalid={this.state.errors.amountError}
+                                        isValid={!Validators.checkValidAmount(this.state.amount)}
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
+                                    <FormControl.Feedback
+                                        type="invalid">{this.state.errors.amountError}</FormControl.Feedback>
                                 </InputGroup>
-                                <span className="error">{this.state.errors.amountError}</span>
                             </Row>
                             <Row>
                                 <InputGroup className="mb-3">
@@ -155,11 +164,16 @@ class SendMoney extends Component {
                                     </InputGroup.Prepend>
                                     <FormControl
                                         name="remarks" value={this.state.remarks}
+                                        placeholder="Optional"
                                         onChange={this.onChangeHandler}
                                         onBlur={this.onRemarksBlurHandler} required
+                                        isInvalid={this.state.errors.remarksError}
+                                        isValid={!Validators.checkValidRemarks(this.state.remarks)}
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
+                                    <FormControl.Feedback
+                                        type="invalid">{this.state.errors.remarksError}</FormControl.Feedback>
                                 </InputGroup>
                                 <span className="error">{this.state.errors.remarksError}</span>
                             </Row>
@@ -169,11 +183,17 @@ class SendMoney extends Component {
                                             disabled={this.checkErrorCount()}>Send</Button>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Alert variant="danger" show={this.state.status} id="response">
-                                    {this.state.status}
+                            <div>
+                                <Alert variant="danger" show={this.state.errorStatus}
+                                       className="response">
+                                    {this.state.errorStatus}
                                 </Alert>
-                            </Row>
+
+                                <Alert variant="success" show={this.state.successStatus}
+                                       className="response">
+                                    {this.state.successStatus}
+                                </Alert>
+                            </div>
                         </Container>
                     </Card.Body>
                 </Card>
