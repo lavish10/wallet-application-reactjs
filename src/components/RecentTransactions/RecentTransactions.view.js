@@ -33,7 +33,7 @@ const RecentTransactionsView = (props) => {
         dataField: 'createdAt',
         order: 'desc'
     }];
-    const rowStyle = (row, rowIndex) => {
+    const rowStyle = (row) => {
         return row.type === 'CREDIT'
             ?{ backgroundColor: '#80bf83',color:'white' }
             : { backgroundColor: '#c25c51',color:'white' };

@@ -7,7 +7,7 @@ jest.mock('axios');
 jest.mock('../../service/AddMoneyService');
 describe('AddMoney', function () {
     it('should display input box for amount', function () {
-        const addMoney = shallow(<AddMoney/>)
+        const addMoney = shallow(<AddMoney/>);
 
         expect(addMoney.find('input')).toHaveLength(1);
     });
