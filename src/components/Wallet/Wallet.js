@@ -36,7 +36,7 @@ class Wallet extends Component {
                 RecentTransactionService.get(this.props.id)
                     .then(data => {
                         this.setState({
-                            transactions: data.slice(0,7).map(transaction => {
+                            transactions: data.splice(data.length-7).map(transaction => {
                                 return {
                                     id: transaction.id,
                                     remarks: !transaction.remarks ? "Self" : transaction.remarks,
