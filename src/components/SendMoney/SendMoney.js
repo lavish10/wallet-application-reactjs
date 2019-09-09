@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import sendMoney from "../../service/SendMoneyService";
+import sendMoneyService from "../../service/SendMoneyService";
 import Validators from '../utils/Validators';
 
 class SendMoney extends Component {
@@ -10,11 +10,8 @@ class SendMoney extends Component {
             phoneNumber: '',
             amount: '',
             remarks: '',
-            errors: {
-                phoneNumberError: '',
-                amountError: '',
-                remarksError: ''
-            }
+            status: '',
+            errors: {}
         }
     }
 
@@ -59,9 +56,38 @@ class SendMoney extends Component {
         })
 
     };
+    extracted = () => {
+        this.setState({
+            status: ''
+        });
+    };
+    checkErrorCount = () => {
+        return Object.keys(this.state.errors).filter(key => this.state.errors[key]).length;
+    };
 
     handleSendMoney = () => {
-        sendMoney(this.props.id, this.state);
+        if (this.checkErrorCount()) {
+            return;
+        }
+        const data = {type: 'DEBIT', amount: this.state.amount, receiverPhoneNumber: this.state.phoneNumber};
+        sendMoneyService.sendMoney(this.props.id, data)
+            .then((response) => {
+                this.setState({
+                    amount: '',
+                    phoneNumber: '',
+                    remarks: '',
+                    errors: {},
+                    status: 'You have successfully transferred ' + response.amount + ' in ' + response.wallet.name + ' wallet'
+                });
+                this.props.onSendMoney();
+                setTimeout(() => {
+                    this.extracted();
+                }, 20000)
+            }).catch(error => {
+            this.setState({
+                status: error.response.data.message
+            })
+        });
     };
 
     render() {
@@ -69,20 +95,21 @@ class SendMoney extends Component {
             <div>
                 <h2>Send Money</h2>
 
-                <label>Phone Number</label> <input type="text" name="phoneNumber"
+                <label>Phone Number</label> <input type="text" name="phoneNumber" value={this.state.phoneNumber}
                                                    onChange={this.onChangeHandler}
                                                    onBlur={this.onPhoneNumberBlurHandler} required/>
                 <span className="error">{this.state.errors.phoneNumberError}</span><br/>
-                <label>Amount</label><input type="text" name="amount"
+                <label>Amount</label><input type="text" name="amount" value={this.state.amount}
                                             onChange={this.onChangeHandler}
                                             onBlur={this.onAmountBlurHandler} required/>
                 <span className="error">{this.state.errors.amountError}</span><br/>
-                <label>Remarks</label><input type="text" name="remarks"
+                <label>Remarks</label><input type="text" name="remarks" value={this.state.remarks}
                                              onChange={this.onChangeHandler}
                                              onBlur={this.onRemarksBlurHandler} required/>
                 <span className="error"> {this.state.errors.remarksError}</span><br/>
-                <button className="button" onClick={this.handleSendMoney}>Send</button>
-
+                <button onClick={this.handleSendMoney} disabled={this.checkErrorCount()}>Send</button>
+                <br/>
+                <span id="response">{this.state.status}</span>
             </div>
         );
     }

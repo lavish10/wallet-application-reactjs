@@ -17,7 +17,7 @@ class Wallet extends Component {
             phoneNumber: response.data.phoneNumber
         })
     };
-    onAddMoney = () => {
+    onUpdateBalance = () => {
         /* istanbul ignore next */
         this.componentDidMount();
     };
@@ -34,7 +34,7 @@ class Wallet extends Component {
                         walletId={this.state.id}
                         phoneNumber={this.state.phoneNumber}
                         balance={this.state.balance}
-                        onAddMoney={this.onAddMoney}
+                        onUpdateBalance={this.onUpdateBalance}
             />
         );
     }

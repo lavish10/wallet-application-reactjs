@@ -31,9 +31,9 @@ class WalletView extends Component {
             return;
         }
         return (
-            <SendMoney id={this.props.id}
-                       changeDisplay={this.handleClickAddMoney}
-                       onAddMoney={this.props.onAddMoney}
+            <SendMoney id={this.props.walletId}
+                       changeDisplay={this.handleClickSendMoney}
+                       onSendMoney={this.props.onUpdateBalance}
             />
         );
     };
@@ -42,9 +42,9 @@ class WalletView extends Component {
             return;
         }
         return (
-            <AddMoney id={this.props.phoneNumber}
+            <AddMoney id={this.props.walletId}
                       changeDisplay={this.handleClickAddMoney}
-                      onAddMoney={this.props.onAddMoney}
+                      onAddMoney={this.props.onUpdateBalance}
             />
         );
     };
