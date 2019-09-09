@@ -56,12 +56,12 @@ describe('send money simulation tests', function () {
         const amountEvent = {target: {value: 50}};
         const remarksEvent = {target: {value: 'Pizza'}};
 
-        sendMoney.find('input[name="phoneNumber"]').simulate('change', phoneNumberEvent);
-        sendMoney.find('input[name="amount"]').simulate('change', amountEvent);
-        sendMoney.find('input[name="remarks"]').simulate('change', remarksEvent);
-        sendMoney.find('button').simulate('click');
+        sendMoney.find('FormControl[name="phoneNumber"]').simulate('change', phoneNumberEvent);
+        sendMoney.find('FormControl[name="amount"]').simulate('change', amountEvent);
+        sendMoney.find('FormControl[name="remarks"]').simulate('change', remarksEvent);
+        sendMoney.find('Button').simulate('click');
         await Promise.resolve();
-        expect(sendMoney.find('span#response').text()).toEqual(`You have successfully transferred 50 in lavish wallet`);
+        expect(sendMoney.find('#response').text()).toEqual(`You have successfully transferred 50 in lavish wallet`);
     });
     it('should update the status after if no wallet found', async function () {
         SendMoneyService.sendMoney.mockRejectedValue({response: {data: {message: 'Wallet not found'}}});
@@ -74,12 +74,12 @@ describe('send money simulation tests', function () {
         const amountEvent = {target: {value: 50}};
         const remarksEvent = {target: {value: 'Pizza'}};
 
-        sendMoney.find('input[name="phoneNumber"]').simulate('change', phoneNumberEvent);
-        sendMoney.find('input[name="amount"]').simulate('change', amountEvent);
-        sendMoney.find('input[name="remarks"]').simulate('change', remarksEvent);
-        sendMoney.find('button').simulate('click');
+        sendMoney.find('FormControl[name="phoneNumber"]').simulate('change', phoneNumberEvent);
+        sendMoney.find('FormControl[name="amount"]').simulate('change', amountEvent);
+        sendMoney.find('FormControl[name="remarks"]').simulate('change', remarksEvent);
+        sendMoney.find('Button').simulate('click');
         await Promise.resolve();
-        expect(sendMoney.find('span#response').text()).toEqual(`Wallet not found`);
+        expect(sendMoney.find('#response').text()).toEqual(`Wallet not found`);
     });
     it('should update the status if insufficient balance', async function () {
         SendMoneyService.sendMoney.mockRejectedValue({response: {data: {message: 'Insufficient Balance in Wallet'}}});
@@ -92,10 +92,10 @@ describe('send money simulation tests', function () {
         const amountEvent = {target: {value: 50}};
         const remarksEvent = {target: {value: 'Pizza'}};
 
-        sendMoney.find('input[name="phoneNumber"]').simulate('change', phoneNumberEvent);
-        sendMoney.find('input[name="amount"]').simulate('change', amountEvent);
-        sendMoney.find('input[name="remarks"]').simulate('change', remarksEvent);
-        sendMoney.find('button').simulate('click');
+        sendMoney.find('FormControl[name="phoneNumber"]').simulate('change', phoneNumberEvent);
+        sendMoney.find('FormControl[name="amount"]').simulate('change', amountEvent);
+        sendMoney.find('FormControl[name="remarks"]').simulate('change', remarksEvent);
+        sendMoney.find('Button').simulate('click');
         await Promise.resolve();
         expect(sendMoney.find('#response').text()).toEqual(`Insufficient Balance in Wallet`);
     });
