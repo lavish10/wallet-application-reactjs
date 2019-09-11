@@ -12,7 +12,7 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'remarks',
             text: 'Remarks',
-            sort: true,
+            sort: false,
             headerStyle: (colum, colIndex) => {
                 return {width: '12.5em', textAlign: 'left'};
             }
@@ -20,17 +20,17 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'type',
             text: 'Type',
-            sort: true
+            sort: false
         },
         {
             dataField: 'amount',
             text: '₹ Amount',
-            sort: true
+            sort: false
         },
         {
             dataField: 'createdAt',
             text: 'Date',
-            sort: true,
+            sort: false,
             style: {fontWeight: 'bold', color: 'black'}
         }
     ];
@@ -40,16 +40,17 @@ const RecentTransactionsView = (props) => {
     }];
     const rowStyle = (row) => {
         return row.type === 'CREDIT'
-            ? {backgroundColor: '#80bf83', color: 'white'}
-            : {backgroundColor: '#c25c51', color: 'white'};
+            ? {backgroundColor: '#80bf83', color: 'black'}
+            : {backgroundColor: '#c2614f', color: 'black'};
     };
     /*const pagination = paginationFactory({
         sizePerPage: 7,
         hideSizePerPage: true
     });*/
 
-    return (
-        <BootstrapTable
+    return (<div>
+            <center><h3>Recent Transactions</h3></center>
+            <BootstrapTable
             defaultSorted={defaultSorted}
             bootstrap4
             keyField='id'
@@ -59,6 +60,7 @@ const RecentTransactionsView = (props) => {
             rowStyle={rowStyle}
             bordered={false}
         />
+        </div>
     );
 };
 
