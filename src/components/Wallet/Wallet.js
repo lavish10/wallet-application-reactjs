@@ -81,7 +81,8 @@ class Wallet extends Component {
                                                                              transactions={this.state.transactions}
                                                                              transactionsLoaded={this.state.transactionsLoaded}
                                                                              onUpdateBalance={this.onUpdateBalance}/>}/>
-                        <Route path={"/transactions"} component={Transactions}/>
+                        <Route path={"/transactions"} component={()=><Transactions walletId={this.state.id}/>}/>
+                        ,
 
                     </Switch>
                 </Router>

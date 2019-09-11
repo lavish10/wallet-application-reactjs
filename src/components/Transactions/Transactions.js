@@ -1,10 +1,11 @@
 import React from 'react';
+import DateFilter from "../Wallet/DateFilter";
 
-const Transactions = () => {
+const Transactions = (props) => {
     return (
         <div>
             <div className={'container'} style={{marginTop: '100px'}}>
-                <h2>Transactions</h2>
+                <DateFilter id={props.walletId}/>
             </div>
         </div>
     );

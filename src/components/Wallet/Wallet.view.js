@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AddMoney from "../AddMoney/AddMoney";
 import SendMoney from "../SendMoney/SendMoney";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
+import DateFilter from "./DateFilter";
 import {Button} from "react-bootstrap";
 
 class WalletView extends Component {
