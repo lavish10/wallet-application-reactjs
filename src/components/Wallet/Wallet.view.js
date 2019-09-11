@@ -83,7 +83,6 @@ class WalletView extends Component {
                         </div>
                     </div>
                 </div>
-                <DateFilter id={this.props.walletId}/>
             </div>
         );
     }
