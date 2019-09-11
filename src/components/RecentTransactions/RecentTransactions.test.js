@@ -16,7 +16,8 @@ describe('RecentTransactionTest', function () {
             createdAt: "2019-09-07T05:08:15.630+0000"
         }];
         RecentTransactionService.get.mockResolvedValue(arrayOfTransactions);
-        const recentTransaction = shallow(<RecentTransactions transactions={arrayOfTransactions} transactionsLoaded={true} id={1}/>);
+        const recentTransaction = shallow(<RecentTransactions transactions={arrayOfTransactions}
+                                                              transactionsLoaded={true} id={1}/>);
 
         expect(recentTransaction.find(RecentTransactionsView)).toHaveLength(1);
         expect(recentTransaction.find(RecentTransactionsView).props()['transactions'][0]['type']).toEqual("CREDIT");

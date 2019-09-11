@@ -76,3 +76,7 @@ tbody + thead {
 .input-group-text {
     min-width: 150px;
 }
+
+.nav-link.active {
+    font-weight: bold;
+}
