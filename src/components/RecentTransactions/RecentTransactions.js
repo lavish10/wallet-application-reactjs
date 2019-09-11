@@ -7,7 +7,7 @@ class RecentTransactions extends Component {
             <div align={'center'}>{
                 this.props.transactionsLoaded ? this.props.transactions.length > 0
                     ? <RecentTransactionsView transactions={this.props.transactions}/> :
-                    "No recent transactions" :
+                    <label>No recent transactions</label> :
                     "Loading..."
 
             }

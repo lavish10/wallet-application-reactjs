@@ -16,7 +16,7 @@ describe('RecentTransactionTest', function () {
             createdAt: "2019-09-07T05:08:15.630+0000"
         }];
         RecentTransactionService.get.mockResolvedValue(arrayOfTransactions);
-        const recentTransaction = shallow(<RecentTransactions transactions={arrayOfTransactions} id={1}/>);
+        const recentTransaction = shallow(<RecentTransactions transactions={arrayOfTransactions} transactionsLoaded={true} id={1}/>);
 
         expect(recentTransaction.find(RecentTransactionsView)).toHaveLength(1);
         expect(recentTransaction.find(RecentTransactionsView).props()['transactions'][0]['type']).toEqual("CREDIT");
@@ -25,7 +25,7 @@ describe('RecentTransactionTest', function () {
     });
 
     it('should be able to display no transactions if no transaction happen', function () {
-        const app = shallow(<RecentTransactions transactions={[]}/>);
+        const app = shallow(<RecentTransactions transactions={[]} transactionsLoaded={true}/>);
         expect(app.find('label').text()).toEqual('No recent transactions');
     });
 
@@ -37,7 +37,7 @@ describe('RecentTransactionTest', function () {
             remarks: null,
             createdAt: "2019-09-07T05:08:15.630+0000"
         }];
-        const app = shallow(<RecentTransactions transactions={arrayOfTransactions}/>);
+        const app = shallow(<RecentTransactions transactions={arrayOfTransactions} transactionsLoaded={true}/>);
         expect(app.find('RecentTransactionsView')).toHaveLength(1);
     });
 });
