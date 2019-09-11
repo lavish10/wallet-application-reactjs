@@ -63,7 +63,7 @@ class Wallet extends Component {
         return (
             <div>
                 <Router>
-                    <Header/>
+                    <Header name={this.state.name}/>
                     <Switch>
                         <Route path={"/"} exact component={() => <WalletView name={this.state.name}
                                                                              walletId={this.state.id}
