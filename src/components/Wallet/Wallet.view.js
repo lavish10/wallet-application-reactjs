@@ -3,6 +3,7 @@ import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
 import SendMoney from "../SendMoney/SendMoney";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
+import {Button} from "react-bootstrap";
 
 class WalletView extends Component {
 
@@ -64,16 +65,17 @@ class WalletView extends Component {
                             }) :
                             'Loading'}</h2>
                         <div style={{marginBottom: '2em'}}>
-                            <button id={'addMoneyBtn'} className={'button'} onClick={this.handleClickAddMoney}>Add Money
-                            </button>
-                            <button id={'sendMoneyBtn'} className={'button'} onClick={this.handleClickSendMoney}>Send
+                            <Button active={this.state.displayAddMoney} id={'addMoneyBtn'} variant="success" onClick={this.handleClickAddMoney}>Add Money
+                            </Button>
+                            <Button active={this.state.displaySendMoney} id={'sendMoneyBtn'} variant="success" onClick={this.handleClickSendMoney}>Send
                                 Money
-                            </button>
+                            </Button>
                         </div>
                     </div>
                     <div style={{margin: '0 auto', width: '70%', display: 'block'}}>
                         {this.renderAddMoney()}
                         {this.renderSendMoney()}
+                        <br/><br/>
                         <div>
                             <RecentTransactions transactions={this.props.transactions}
                                                 transactionsLoaded={this.props.transactionsLoaded}/>
