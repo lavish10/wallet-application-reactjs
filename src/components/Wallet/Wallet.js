@@ -8,7 +8,8 @@ class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            transactions: []
+            transactions: [],
+            transactionsLoaded: false
         }
     }
 
@@ -47,7 +48,8 @@ class Wallet extends Component {
                                     amount: parseFloat(transaction.amount).toFixed(2),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
                                 }
-                            })
+                            }),
+                            transactionsLoaded: true
                         })
                     })
             })
@@ -63,6 +65,7 @@ class Wallet extends Component {
                         phoneNumber={this.state.phoneNumber}
                         balance={this.state.balance}
                         transactions={this.state.transactions}
+                        transactionsLoaded={this.state.transactionsLoaded}
                         onUpdateBalance={this.onUpdateBalance}
             />
         );

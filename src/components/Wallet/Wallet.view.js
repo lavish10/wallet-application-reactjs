@@ -57,7 +57,12 @@ class WalletView extends Component {
                 <div className={'container'} style={{marginTop: '100px'}}>
                     <div id={'balance'} style={{textAlign: 'center', display: 'block'}}
                          className="container">
-                        <h2>Balance : ₹ {this.props.balance}</h2>
+                        <h2>Balance : {(!isNaN(parseFloat(this.props.balance)))
+                            ? parseFloat(this.props.balance).toLocaleString('en-IN', {
+                                style: 'currency',
+                                currency: 'INR'
+                            }) :
+                            'Loading'}</h2>
                         <div style={{marginBottom: '2em'}}>
                             <button id={'addMoneyBtn'} className={'button'} onClick={this.handleClickAddMoney}>Add Money
                             </button>
@@ -70,7 +75,8 @@ class WalletView extends Component {
                         {this.renderAddMoney()}
                         {this.renderSendMoney()}
                         <div>
-                            <RecentTransactions transactions={this.props.transactions}/>
+                            <RecentTransactions transactions={this.props.transactions}
+                                                transactionsLoaded={this.props.transactionsLoaded}/>
                         </div>
                     </div>
                 </div>
