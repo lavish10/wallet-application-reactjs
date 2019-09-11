@@ -16,6 +16,7 @@ class AddMoney extends Component {
 
     handleOnChange = (event) => {
         let status = '';
+
         if (event.target.value < 50) {
             status = 'Amount must be greater or equal to 50';
         } else if (event.target.value > 50000) {
@@ -26,7 +27,8 @@ class AddMoney extends Component {
 
         this.setState({
             amount: parseFloat(event.target.value),
-            errorstatus: status
+            errorstatus: status,
+            status: ''
         })
     };
 
@@ -55,11 +57,13 @@ class AddMoney extends Component {
     };
 
     extracted() {
-        this.setState({
-            amount: '',
-            status: ''
-        });
-        this.props.changeDisplay()
+        if (!this.state.amount > 0) {
+            this.setState({
+                amount: '',
+                status: ''
+            });
+            this.props.changeDisplay()
+        }
     }
 
     render() {

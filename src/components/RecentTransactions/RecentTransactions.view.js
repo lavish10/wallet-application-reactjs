@@ -40,8 +40,8 @@ const RecentTransactionsView = (props) => {
     }];
     const rowStyle = (row) => {
         return row.type === 'CREDIT'
-            ? {backgroundColor: '#80bf83', color: 'black'}
-            : {backgroundColor: '#c2614f', color: 'black'};
+            ? {backgroundColor: '#a8f5ab', color: 'black'}
+            : {backgroundColor: '#ffb9ba', color: 'black'};
     };
     /*const pagination = paginationFactory({
         sizePerPage: 7,

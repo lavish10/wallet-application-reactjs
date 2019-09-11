@@ -25,7 +25,8 @@ class SendMoney extends Component {
 
         /* istanbul ignore next */
         this.setState({
-            [name]: value
+            [name]: value,
+            successStatus: ''
         });
     };
     onPhoneNumberBlurHandler = () => {
@@ -65,10 +66,14 @@ class SendMoney extends Component {
     };
     extracted = () => {
         /* istanbul ignore next */
-        this.setState({
-            successStatus: '',
-            errorStatus: ''
-        });
+        if (this.state.phoneNumber.length === 0 &&
+            this.state.amount.length === 0 &&
+            this.state.remarks.length === 0) {
+            this.setState({
+                successStatus: '',
+                errorStatus: ''
+            });
+        }
     };
     checkErrorCount = () => {
         return Object.keys(this.state.errors).filter(key => this.state.errors[key]).length;
