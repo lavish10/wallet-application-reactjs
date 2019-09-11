@@ -3,6 +3,9 @@ import WalletView from "./Wallet.view";
 import WalletModel from "./Wallet.model";
 import RecentTransactionService from "../../service/RecentTransactionService";
 import dateTimeFormatter from "../utils/dateTimeFormatter";
+import Header from "../Header";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Transactions from "../Transactions/Transactions";
 
 class Wallet extends Component {
     constructor(props) {
@@ -58,13 +61,21 @@ class Wallet extends Component {
 
     render() {
         return (
-            <WalletView name={this.state.name}
-                        walletId={this.state.id}
-                        phoneNumber={this.state.phoneNumber}
-                        balance={this.state.balance}
-                        transactions={this.state.transactions}
-                        onUpdateBalance={this.onUpdateBalance}
-            />
+            <div>
+                <Router>
+                    <Header id={this.props.id} name={this.state.name}/>
+                    <Switch>
+                        <Route path={"/" + this.props.id} exact component={() => <WalletView name={this.state.name}
+                                                                                             walletId={this.state.id}
+                                                                                             phoneNumber={this.state.phoneNumber}
+                                                                                             balance={this.state.balance}
+                                                                                             transactions={this.state.transactions}
+                                                                                             onUpdateBalance={this.onUpdateBalance}/>}/>
+                        <Route path={"/" + this.props.id + "/transactions"} component={Transactions}/>
+
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }
