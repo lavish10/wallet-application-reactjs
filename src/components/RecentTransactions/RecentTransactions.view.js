@@ -12,26 +12,35 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'remarks',
             text: 'Remarks',
-            sort: true,
+            sort: false,
             headerStyle: (colum, colIndex) => {
-                return {width: '12.5em', textAlign: 'left'};
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
             }
         },
         {
             dataField: 'type',
             text: 'Type',
-            sort: true
+            sort: false,
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         },
         {
             dataField: 'amount',
             text: '₹ Amount',
-            sort: true
+            sort: false,
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         },
         {
             dataField: 'createdAt',
             text: 'Date',
-            sort: true,
-            style: {fontWeight: 'bold', color: 'black'}
+            sort: false,
+            style: {fontWeight: 'bold', color: 'black'},
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         }
     ];
     const defaultSorted = [{
@@ -40,16 +49,18 @@ const RecentTransactionsView = (props) => {
     }];
     const rowStyle = (row) => {
         return row.type === 'CREDIT'
-            ? {backgroundColor: '#80bf83', color: 'white'}
-            : {backgroundColor: '#c25c51', color: 'white'};
+            ? {backgroundColor: '#a8f5ab', color: 'black', border: '3px solid white'}
+            : {backgroundColor: '#ffb9ba', color: 'black', border: '3px solid white'}
+
     };
     /*const pagination = paginationFactory({
         sizePerPage: 7,
         hideSizePerPage: true
     });*/
 
-    return (
-        <BootstrapTable
+    return (<div>
+            <center><h3>Recent Transactions</h3></center>
+            <BootstrapTable
             defaultSorted={defaultSorted}
             bootstrap4
             keyField='id'
@@ -59,6 +70,7 @@ const RecentTransactionsView = (props) => {
             rowStyle={rowStyle}
             bordered={false}
         />
+        </div>
     );
 };
 

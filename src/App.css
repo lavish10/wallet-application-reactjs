@@ -20,7 +20,7 @@
 }
 
 .App-link {
-    color: #61dafb;
+    /*color: #61dafb;*/
 }
 
 .container {
@@ -56,33 +56,10 @@ tbody + thead {
 }
 
 .container h2 {
-    line-height: 200px; /* Create scrollbar to test positioning */
     text-align: center;
     font-family: sans-serif;
+    margin-bottom: 1em;
 }
-
-.button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-family: sans-serif;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-#b1 {
-    justify-content: center;
-}
-
-#b2 {
-    float: right;
-}
-
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
@@ -98,4 +75,8 @@ tbody + thead {
 
 .input-group-text {
     min-width: 150px;
+}
+
+.nav-link.active {
+    font-weight: bold;
 }

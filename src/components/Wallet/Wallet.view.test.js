@@ -1,14 +1,13 @@
 import WalletView from "./Wallet.view";
 import {shallow} from "enzyme";
 import React from "react";
-import Header from "../Header";
 import SendMoney from "../SendMoney/SendMoney";
 import AddMoney from "../AddMoney/AddMoney";
 
 describe('WalletView', function () {
     it('should have 2 button for adding and sending money', function () {
             const wallet = shallow(<WalletView/>);
-            const buttons = wallet.find('button');
+            const buttons = wallet.find('Button');
 
         expect(buttons).toHaveLength(2);
         });
@@ -17,17 +16,11 @@ describe('WalletView', function () {
             const balance = wallet.find('h2');
 
             expect(balance).toHaveLength(1);
-            expect(balance.text()).toEqual('Balance : ₹ 100');
-        });
-        it('should display the Wallet owner name', function () {
-            const wallet = shallow(<WalletView name='someName'/>);
-            const header = wallet.find(Header);
-
-            expect(header.props().name).toEqual('someName');
+            expect(balance.text()).toEqual('Balance : ₹100.00');
         });
     it('should show the add money section on clicking add money button', function () {
             const wallet = shallow(<WalletView/>);
-        const button = wallet.find('button#addMoneyBtn');
+        const button = wallet.find('Button#addMoneyBtn');
 
             button.simulate('click');
 
@@ -45,7 +38,7 @@ describe('WalletView', function () {
         });
     it('should display send money section on clicking send money button', function () {
         const wallet = shallow(<WalletView/>);
-        const button = wallet.find('button#sendMoneyBtn');
+        const button = wallet.find('Button#sendMoneyBtn');
 
         button.simulate('click');
 

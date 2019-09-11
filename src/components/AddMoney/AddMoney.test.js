@@ -55,6 +55,7 @@ describe('AddMoney', function () {
         const event = {target: {value: 5}};
 
         addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('blur');
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be greater or equal to 50');
     });
@@ -65,6 +66,7 @@ describe('AddMoney', function () {
         const event = {target: {value: 60000}};
 
         addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('blur')
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be less than or equal to 50000');
     });
@@ -75,6 +77,7 @@ describe('AddMoney', function () {
         const event = {target: {value: 623}};
 
         addMoney.find('FormControl[name="amount"]').simulate('change', event);
+        addMoney.find('FormControl[name="amount"]').simulate('blur');
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be a multiple of 50');
     });
