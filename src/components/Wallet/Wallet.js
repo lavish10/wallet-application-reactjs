@@ -12,7 +12,8 @@ class Wallet extends Component {
         super(props);
         this.state = {
             currentPage: 'home',
-            transactions: []
+            transactions: [],
+            transactionsLoaded: false
         }
     }
 
@@ -42,17 +43,21 @@ class Wallet extends Component {
                                 /* istanbul ignore next */
                                 return {
                                     id: transaction.id,
-                                    remarks: !transaction.remarks ? "Self" : transaction.remarks,
+                                    remarks: !transaction.remarks ? "" : transaction.remarks,
                                     type: transaction.type,
-                                    amount: parseFloat(transaction.amount).toFixed(2),
+                                    amount: parseFloat(transaction.amount).toLocaleString('en-IN', {
+                                        style: 'currency',
+                                        currency: 'INR'
+                                    }),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
                                 }
-                            })
+                            }),
+                            transactionsLoaded: true
                         })
                     })
             })
             .catch(error => {
-                console.log(error);
+                //console.log(error);
             })
     };
 
@@ -74,11 +79,13 @@ class Wallet extends Component {
                                                                              phoneNumber={this.state.phoneNumber}
                                                                              balance={this.state.balance}
                                                                              transactions={this.state.transactions}
+                                                                             transactionsLoaded={this.state.transactionsLoaded}
                                                                              onUpdateBalance={this.onUpdateBalance}/>}/>
                         <Route path={"/transactions"} component={Transactions}/>
 
                     </Switch>
                 </Router>
+
             </div>
         );
     }

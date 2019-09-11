@@ -14,18 +14,27 @@ class SendMoney extends Component {
             remarks: '',
             successStatus: '',
             errorStatus: '',
-            errors: {}
+            errors: {
+                phoneNumberError: '',
+                remarksError: '',
+                amountError: ''
+            }
         }
     }
 
     onChangeHandler = (event) => {
         const target = event.target;
-        const value = target.value;
+        let value = target.value;
         const name = target.name;
-
+        if (name !== 'remarks') {
+            value = isNaN(parseFloat(value)) ?
+                '' : parseFloat(value)
+        }
         /* istanbul ignore next */
         this.setState({
-            [name]: value
+            [name]: value,
+            successStatus: '',
+            errorstatus: ''
         });
     };
     onPhoneNumberBlurHandler = () => {
@@ -65,10 +74,15 @@ class SendMoney extends Component {
     };
     extracted = () => {
         /* istanbul ignore next */
-        this.setState({
-            successStatus: '',
-            errorStatus: ''
-        });
+        if (this.state.phoneNumber.length === 0 &&
+            this.state.amount.length === 0 &&
+            this.state.remarks.length === 0) {
+            this.setState({
+                successStatus: '',
+                errorStatus: ''
+            });
+        }
+        //this.props.changeDisplay()
     };
     checkErrorCount = () => {
         return Object.keys(this.state.errors).filter(key => this.state.errors[key]).length;
@@ -92,7 +106,11 @@ class SendMoney extends Component {
                     amount: '',
                     phoneNumber: '',
                     remarks: '',
-                    errors: {},
+                    errors: {
+                        phoneNumberError: '',
+                        remarksError: '',
+                        amountError: ''
+                    },
                     successStatus: 'You have successfully transferred ₹ ' + response.amount + '.',
                     errorStatus: ''
                 });
@@ -115,8 +133,6 @@ class SendMoney extends Component {
                 <Card>
                     <Card.Body>
                         <Container>
-
-                            <h2>Send Money</h2>
                             <Row>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Prepend>
@@ -133,10 +149,11 @@ class SendMoney extends Component {
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
-                                    <FormControl.Feedback
-                                        type="invalid">{this.state.errors.phoneNumberError}</FormControl.Feedback>
                                 </InputGroup>
                             </Row>
+                            <Alert variant="danger"
+                                   show={this.state.errors.phoneNumberError}
+                                   className="response">{this.state.errors.phoneNumberError}</Alert>
                             <Row>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Prepend>
@@ -152,10 +169,11 @@ class SendMoney extends Component {
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
-                                    <FormControl.Feedback
-                                        type="invalid">{this.state.errors.amountError}</FormControl.Feedback>
                                 </InputGroup>
                             </Row>
+                            <Alert variant="danger"
+                                   show={this.state.errors.amountError}
+                                   className="response">{this.state.errors.amountError}</Alert>
                             <Row>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Prepend>
@@ -168,18 +186,18 @@ class SendMoney extends Component {
                                         onChange={this.onChangeHandler}
                                         onBlur={this.onRemarksBlurHandler} required
                                         isInvalid={this.state.errors.remarksError}
-                                        isValid={!Validators.checkValidRemarks(this.state.remarks)}
                                         aria-label="Default"
                                         aria-describedby="inputGroup-sizing-default"
                                     />
-                                    <FormControl.Feedback
-                                        type="invalid">{this.state.errors.remarksError}</FormControl.Feedback>
                                 </InputGroup>
-                                <span className="error">{this.state.errors.remarksError}</span>
                             </Row>
+                            <Alert variant="danger"
+                                   show={this.state.errors.remarksError}
+                                   className="response">{this.state.errors.remarksError}</Alert>
                             <Row>
                                 <Col md={{span: 3, offset: 5}}>
-                                    <Button variant="success" onClick={this.handleSendMoney}
+                                    <Button variant={this.checkErrorCount() ? "info" : "success"}
+                                            onClick={this.handleSendMoney}
                                             disabled={this.checkErrorCount()}>Send</Button>
                                 </Col>
                             </Row>
