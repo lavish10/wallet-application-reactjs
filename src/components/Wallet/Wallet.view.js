@@ -3,6 +3,7 @@ import Header from "../Header";
 import AddMoney from "../AddMoney/AddMoney";
 import SendMoney from "../SendMoney/SendMoney";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
+import DateFilter from "./DateFilter";
 
 class WalletView extends Component {
 
@@ -74,6 +75,7 @@ class WalletView extends Component {
                         </div>
                     </div>
                 </div>
+                <DateFilter id={this.props.walletId}/>
             </div>
         );
     }
