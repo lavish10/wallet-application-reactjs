@@ -29,10 +29,6 @@ class Wallet extends Component {
         this.componentDidMount();
     };
     componentDidMount = () => {
-        this.getWallet();
-    };
-
-    getWallet() {
         WalletModel.get(this.props.id)
             .then(this.setWallet)
             .then(() => {
@@ -57,7 +53,7 @@ class Wallet extends Component {
             .catch(error => {
                 console.log(error);
             })
-    }
+    };
 
     render() {
         return (

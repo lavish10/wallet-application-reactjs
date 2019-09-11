@@ -1,7 +1,6 @@
 import WalletView from "./Wallet.view";
 import {shallow} from "enzyme";
 import React from "react";
-import Header from "../Header";
 import SendMoney from "../SendMoney/SendMoney";
 import AddMoney from "../AddMoney/AddMoney";
 
@@ -18,12 +17,6 @@ describe('WalletView', function () {
 
             expect(balance).toHaveLength(1);
             expect(balance.text()).toEqual('Balance : ₹ 100');
-        });
-        it('should display the Wallet owner name', function () {
-            const wallet = shallow(<WalletView name='someName'/>);
-            const header = wallet.find(Header);
-
-            expect(header.props().name).toEqual('someName');
         });
     it('should show the add money section on clicking add money button', function () {
             const wallet = shallow(<WalletView/>);
