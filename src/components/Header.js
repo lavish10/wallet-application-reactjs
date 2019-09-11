@@ -3,7 +3,6 @@ import {Nav, Navbar} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 const Header = (props) => {
-    console.log(props);
     return (
         <div>
             <div>
@@ -11,9 +10,9 @@ const Header = (props) => {
                     <Navbar bg="dark" variant="dark" fixed="top">
                         <Navbar.Brand href="">Wallet</Navbar.Brand>
                         <Nav className="mr-auto">
-                            <Link className={"nav-link"} to={"/" + props.id}>Home</Link>
+                            <Link className={"nav-link"} to={"/"}>Home</Link>
                             <Link className={"nav-link"}
-                                  to={"/" + props.id + "/transactions"}>Transactions</Link>
+                                  to={"/transactions"}>Transactions</Link>
                         </Nav>
                         <Nav>
                             <Nav.Link>{props.name}</Nav.Link>
