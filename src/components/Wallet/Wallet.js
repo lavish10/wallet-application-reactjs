@@ -11,6 +11,7 @@ class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            currentPage: 'home',
             transactions: []
         }
     }
@@ -55,11 +56,18 @@ class Wallet extends Component {
             })
     };
 
+    handleChangeNavBar = (name) => {
+        this.setState({
+            currentPage: name
+        });
+    };
+
     render() {
         return (
             <div>
                 <Router>
-                    <Header name={this.state.name}/>
+                    <Header handleChangeNavBar={this.handleChangeNavBar} name={this.state.name}
+                            currentPage={this.state.currentPage}/>
                     <Switch>
                         <Route path={"/"} exact component={() => <WalletView name={this.state.name}
                                                                              walletId={this.state.id}
