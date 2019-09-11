@@ -43,9 +43,12 @@ class Wallet extends Component {
                                 /* istanbul ignore next */
                                 return {
                                     id: transaction.id,
-                                    remarks: !transaction.remarks ? "Self" : transaction.remarks,
+                                    remarks: !transaction.remarks ? "" : transaction.remarks,
                                     type: transaction.type,
-                                    amount: parseFloat(transaction.amount).toFixed(2),
+                                    amount: parseFloat(transaction.amount).toLocaleString('en-IN', {
+                                    style: 'currency',
+                                    currency: 'INR'
+                                }),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
                                 }
                             }),

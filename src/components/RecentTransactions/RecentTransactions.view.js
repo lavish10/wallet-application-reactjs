@@ -14,24 +14,33 @@ const RecentTransactionsView = (props) => {
             text: 'Remarks',
             sort: false,
             headerStyle: (colum, colIndex) => {
-                return {width: '12.5em', textAlign: 'left'};
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
             }
         },
         {
             dataField: 'type',
             text: 'Type',
-            sort: false
+            sort: false,
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         },
         {
             dataField: 'amount',
             text: '₹ Amount',
-            sort: false
+            sort: false,
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         },
         {
             dataField: 'createdAt',
             text: 'Date',
             sort: false,
-            style: {fontWeight: 'bold', color: 'black'}
+            style: {fontWeight: 'bold', color: 'black'},
+            headerStyle: (colum, colIndex) => {
+                return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            }
         }
     ];
     const defaultSorted = [{
@@ -40,8 +49,9 @@ const RecentTransactionsView = (props) => {
     }];
     const rowStyle = (row) => {
         return row.type === 'CREDIT'
-            ? {backgroundColor: '#a8f5ab', color: 'black'}
-            : {backgroundColor: '#ffb9ba', color: 'black'};
+            ? {backgroundColor: '#a8f5ab', color: 'black', border: '3px solid white'}
+            : {backgroundColor: '#ffb9ba', color: 'black', border: '3px solid white'}
+
     };
     /*const pagination = paginationFactory({
         sizePerPage: 7,
