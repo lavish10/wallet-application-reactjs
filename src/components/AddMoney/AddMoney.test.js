@@ -66,7 +66,7 @@ describe('AddMoney', function () {
         const event = {target: {value: 60000}};
 
         addMoney.find('FormControl[name="amount"]').simulate('change', event);
-        addMoney.find('FormControl[name="amount"]').simulate('blur')
+        addMoney.find('FormControl[name="amount"]').simulate('blur');
 
         expect(addMoney.find('#failure').text()).toEqual('Amount must be less than or equal to 50000');
     });
@@ -93,6 +93,25 @@ describe('AddMoney', function () {
         await Promise.resolve();
 
         expect(addMoney.find('#success').text()).toEqual('');
+    });
+    it('should be able to set status on focus', async function () {
+        const addMoney = shallow(<AddMoney/>);
+        const focus = addMoney.find('FormControl');
+
+        focus.simulate('focus');
+
+        expect(addMoney.state().errorstatus).toEqual('');
+    });
+    it('should be able to set status for failed to add money', async function () {
+        AddMoneyService.post.mockResolvedValue(undefined);
+        const addMoney = shallow(<AddMoney/>);
+        const button = addMoney.find('Button');
+
+        button.simulate('click');
+        await Promise.resolve().catch(() => {
+            expect(addMoney.state().errorstatus).toEqual("Failed to add money");
+            expect(addMoney.state().status).toEqual("")
+        });
     });
 
 });
