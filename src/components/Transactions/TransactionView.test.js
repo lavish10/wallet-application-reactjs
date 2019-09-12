@@ -1,5 +1,5 @@
 import TransactionsView from "./TransactionView";
-import {shallow} from "enzyme";
+import {mount} from "enzyme";
 import React from "react";
 
 describe('TransactionViewTest', function () {
@@ -11,7 +11,7 @@ describe('TransactionViewTest', function () {
             remarks: '',
             createdAt: "2 Sep 2019 10:00:00"
         }];
-        const transactionView = shallow(<TransactionsView transactions={transactionData}/>);
-        expect(transactionView.find('BootstrapTableContainer')).toHaveLength(1);
+        const transactionView = mount(<TransactionsView transactions={transactionData}/>);
+        expect(transactionView.find('BootstrapTable')).toHaveLength(1);
     });
 });
