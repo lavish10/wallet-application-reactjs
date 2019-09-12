@@ -202,12 +202,12 @@ class SendMoney extends Component {
                                 </Col>
                             </Row>
                             <div>
-                                <Alert variant="danger" show={this.state.errorStatus}
+                                <Alert id="errorResponse" variant="danger" show={this.state.errorStatus}
                                        className="response">
                                     {this.state.errorStatus}
                                 </Alert>
 
-                                <Alert variant="success" show={this.state.successStatus}
+                                <Alert id="successResponse" variant="success" show={this.state.successStatus}
                                        className="response">
                                     {this.state.successStatus}
                                 </Alert>
