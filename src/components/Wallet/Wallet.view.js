@@ -4,6 +4,7 @@ import SendMoney from "../SendMoney/SendMoney";
 import RecentTransactions from "../RecentTransactions/RecentTransactions";
 import DateFilter from "./DateFilter";
 import {Button} from "react-bootstrap";
+import Balance from "./Balance";
 
 class WalletView extends Component {
 
@@ -57,12 +58,7 @@ class WalletView extends Component {
                 <div className={'container'} style={{marginTop: '100px'}}>
                     <div id={'balance'} style={{textAlign: 'center', display: 'block'}}
                          className="container">
-                        <h2>Balance : {(!isNaN(parseFloat(this.props.balance)))
-                            ? parseFloat(this.props.balance).toLocaleString('en-IN', {
-                                style: 'currency',
-                                currency: 'INR'
-                            }) :
-                            'Loading'}</h2>
+                        <Balance balance={this.props.balance}/>
                         <div style={{marginBottom: '2em'}}>
                             <Button active={this.state.displayAddMoney} id={'addMoneyBtn'} variant="success"
                                     onClick={this.handleClickAddMoney}>Add Money

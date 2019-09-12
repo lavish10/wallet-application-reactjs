@@ -1,21 +1,10 @@
 import React, {Component} from 'react';
-import {
-    Button,
-    ButtonGroup,
-    ButtonToolbar,
-    Col,
-    Container, FormCheck,
-    FormControl,
-    FormGroup, FormLabel,
-    InputGroup,
-    Row
-} from "react-bootstrap";
-import {Radio, RadioGroup} from 'react-radio-group'
+import {Button, ButtonToolbar, Col, Container, FormCheck, FormGroup, Row} from "react-bootstrap";
 import getStartDate from "../utils/getStartDate";
 import FilterService from "../../service/FilterService";
-import RecentTransactionsView from "../RecentTransactions/RecentTransactions.view";
-import Transactions from "../Transactions/Transactions";
 import TransactionsView from "../Transactions/TransactionView";
+import dateTimeFormatter from "./../utils/dateTimeFormatter";
+import Balance from "./Balance";
 
 class DateFilter extends Component {
 
@@ -31,9 +20,10 @@ class DateFilter extends Component {
     }
 
     handleOnChange = (event) => {
+        console.log(event.target.value);
         this.setState({
-            startDate: getStartDate(event),
-            endDate: new Date()
+            startDate: getStartDate(event.target.value).toUTCString(),
+            endDate: new Date().toUTCString()
         });
     }
 
@@ -43,7 +33,16 @@ class DateFilter extends Component {
         }
         const query = {startDate: this.state.startDate, endDate: this.state.endDate}
         FilterService.get(this.props.id, query).then(response => this.setState({
-            transactions: response
+            transactions: response.map(transaction=> {
+                return {
+                    ...transaction,
+                    createdAt:dateTimeFormatter(transaction.createdAt),
+                    amount: Math.round(parseInt(transaction.amount)).toLocaleString('en-IN', {
+                        style: 'currency',
+                        currency: 'INR'
+                    }).slice(0, -3)
+                }
+            })
         }));
 
     }
@@ -52,10 +51,12 @@ class DateFilter extends Component {
 
         return (
             <Container>
+                <Balance balance={this.props.balance}/>
                 <FormGroup as={Row}>
                     <Col sm={10}>
                         <FormCheck
                             inline
+                            value={1}
                             type="radio"
                             label="1 Month"
                             name="formHorizontalRadios"
@@ -64,6 +65,7 @@ class DateFilter extends Component {
                         />
                         <FormCheck
                             inline
+                            value={3}
                             type="radio"
                             label="3 Month"
                             name="formHorizontalRadios"
@@ -72,6 +74,7 @@ class DateFilter extends Component {
                         />
                         <FormCheck
                             inline
+                            value={6}
                             type="radio"
                             label="6 Month"
                             name="formHorizontalRadios"

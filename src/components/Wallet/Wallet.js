@@ -48,7 +48,7 @@ class Wallet extends Component {
                                     amount: parseFloat(transaction.amount).toLocaleString('en-IN', {
                                         style: 'currency',
                                         currency: 'INR'
-                                    }),
+                                    }).slice(0, -3),
                                     createdAt: dateTimeFormatter(transaction.createdAt)
                                 }
                             }),
@@ -81,7 +81,7 @@ class Wallet extends Component {
                                                                              transactions={this.state.transactions}
                                                                              transactionsLoaded={this.state.transactionsLoaded}
                                                                              onUpdateBalance={this.onUpdateBalance}/>}/>
-                        <Route path={"/transactions"} component={()=><Transactions walletId={this.state.id}/>}/>
+                        <Route path={"/transactions"} component={()=><Transactions balance={this.state.balance} walletId={this.state.id}/>}/>
                         ,
 
                     </Switch>
