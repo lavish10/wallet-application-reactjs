@@ -3,6 +3,7 @@ import {shallow} from "enzyme";
 import React from "react";
 import SendMoney from "../SendMoney/SendMoney";
 import AddMoney from "../AddMoney/AddMoney";
+import Balance from "./Balance";
 
 describe('WalletView', function () {
     it('should have 2 button for adding and sending money', function () {
@@ -13,11 +14,14 @@ describe('WalletView', function () {
         });
         it('should display the Wallet balance', function () {
             const wallet = shallow(<WalletView balance={100}/>);
-            const balance = wallet.find('h2');
-
-            expect(balance).toHaveLength(1);
-            expect(balance.text()).toEqual('Balance : ₹100.00');
+            const displayedBalance = wallet.find('Balance');
+            expect(displayedBalance).toHaveLength(1);
         });
+    it('should pass balance to the Wallet balance', function () {
+        const wallet = shallow(<WalletView balance={100}/>);
+        const displayedBalance = wallet.find('Balance');
+        expect(displayedBalance.props()['balance']).toEqual(100);
+    });
     it('should show the add money section on clicking add money button', function () {
             const wallet = shallow(<WalletView/>);
         const button = wallet.find('Button#addMoneyBtn');
