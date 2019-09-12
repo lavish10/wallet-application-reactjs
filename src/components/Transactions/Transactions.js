@@ -4,7 +4,6 @@ import Header from "../Header";
 import WalletModel from "../Wallet/Wallet.model";
 
 class Transactions extends Component {
-
     constructor(props) {
         super(props);
         this.state = {}
