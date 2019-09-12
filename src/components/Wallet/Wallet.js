@@ -62,7 +62,7 @@ class Wallet extends Component {
         return (
             <React.Fragment>
 
-                <Header name={this.state.name}/>
+                <Header name={this.state.name} currentPage="home"/>
                 <WalletView name={this.state.name}
                             walletId={this.state.id}
                             phoneNumber={this.state.phoneNumber}
