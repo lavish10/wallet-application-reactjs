@@ -36,7 +36,7 @@ class Wallet extends Component {
                     .then(data => {
                         /* istanbul ignore next */
                         this.setState({
-                            transactions: data.splice(data.length - 7).map(transaction => {
+                            transactions: data.splice(data.length - 7).reverse().map(transaction => {
                                 /* istanbul ignore next */
                                 return {
                                     id: transaction.id,
