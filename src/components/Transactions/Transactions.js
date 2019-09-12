@@ -5,7 +5,7 @@ const Transactions = (props) => {
     return (
         <div>
             <div className={'container'} style={{marginTop: '100px'}}>
-                <DateFilter id={props.walletId}/>
+                <DateFilter balance={props.balance} id={props.walletId}/>
             </div>
         </div>
     );
