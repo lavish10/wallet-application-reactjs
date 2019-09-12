@@ -31,6 +31,19 @@ const TransactionsView = (props) => {
             sort: true,
             headerStyle: (colum, colIndex) => {
                 return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            },
+            sortFunc: (a, b, order, dataField, rowA, rowB) => {
+                a=a.replace(/[^0-9.-]+/g,"");
+                b=b.replace(/[^0-9.-]+/g,"");
+                if (order === 'desc') {
+                    if (parseFloat(a) < parseFloat(b)) return 1;
+                    if (parseFloat(a) > parseFloat(b)) return -1;
+                    return 0;
+                } else {
+                    if (parseFloat(a) < parseFloat(b)) return -1;
+                    if (parseFloat(a) > parseFloat(b)) return 1;
+                    return 0;
+                }
             }
         },
         {
@@ -40,6 +53,17 @@ const TransactionsView = (props) => {
             style: {fontWeight: 'bold', color: 'black'},
             headerStyle: (colum, colIndex) => {
                 return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            },
+            sortFunc: (a, b, order, dataField, rowA, rowB) => {
+                if (order === 'desc') {
+                    if (new Date(a) < new Date(b)) return 1;
+                    if (new Date(a) > new Date(b)) return -1;
+                    return 0;
+                } else {
+                    if (new Date(a) < new Date(b)) return -1;
+                    if (new Date(a) > new Date(b)) return 1;
+                    return 0;
+                }
             }
         }
     ];
@@ -57,7 +81,6 @@ const TransactionsView = (props) => {
         sizePerPage: 7,
         hideSizePerPage: true
     });*/
-
     return (<div>
             <BootstrapTable
                 defaultSorted={defaultSorted}
