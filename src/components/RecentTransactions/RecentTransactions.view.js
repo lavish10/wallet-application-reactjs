@@ -53,23 +53,16 @@ const RecentTransactionsView = (props) => {
             : {backgroundColor: '#ffb9ba', color: 'black', border: '3px solid white'}
 
     };
-    /*const pagination = paginationFactory({
-        sizePerPage: 7,
-        hideSizePerPage: true
-    });*/
-
     return (<div>
-            <center><h3>Recent Transactions</h3></center>
             <BootstrapTable
-            defaultSorted={defaultSorted}
-            bootstrap4
-            keyField='id'
-            data={props.transactions}
-            /* pagination = {pagination}*/
-            columns={columns}
-            rowStyle={rowStyle}
-            bordered={false}
-        />
+                defaultSorted={defaultSorted}
+                bootstrap4
+                keyField='id'
+                data={props.transactions}
+                columns={columns}
+                rowStyle={rowStyle}
+                bordered={false}
+            />
         </div>
     );
 };
