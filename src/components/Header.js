@@ -4,19 +4,6 @@ import {Link} from "react-router-dom";
 import '../App.css';
 
 class Header extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentPage: 'home'
-        }
-    }
-
-    handleClickNavBar = (event) => {
-        this.setState({
-            currentPage: event.target.name
-        });
-    };
-
     render() {
         return (
             <div>
@@ -26,12 +13,12 @@ class Header extends Component {
                             <Navbar.Brand href="">Wallet</Navbar.Brand>
                             <Nav className="mr-auto">
                                 <Link name='home'
-                                      className={this.state.currentPage === 'home' ? 'nav-link active' : 'nav-link'}
-                                      onClick={this.handleClickNavBar}
+                                      className={this.props.currentPage === 'home' ? 'nav-link active' : 'nav-link'}
+
                                       to={"/"}>Home</Link>
                                 <Link name='transactions'
-                                      className={this.state.currentPage === 'transactions' ? 'nav-link active' : 'nav-link'}
-                                      onClick={this.handleClickNavBar}
+                                      className={this.props.currentPage === 'transactions' ? 'nav-link active' : 'nav-link'}
+
                                       to={"/transactions"}>Transactions</Link>
                             </Nav>
                             <Nav>

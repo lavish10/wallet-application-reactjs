@@ -27,7 +27,7 @@ class Transactions extends Component {
     render() {
         return (
             <React.Fragment>
-                <Header name={this.state.name}/>
+                <Header name={this.state.name} currentPage="transactions"/>
                 <div className={'container'} style={{marginTop: '100px'}}>
                     <DateFilter balance={this.state.balance} id={this.state.id}/>
                 </div>
