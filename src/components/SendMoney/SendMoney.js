@@ -26,6 +26,7 @@ class SendMoney extends Component {
         const target = event.target;
         let value = target.value;
         const name = target.name;
+        /* istanbul ignore next */
         if (name !== 'remarks') {
             value = isNaN(parseFloat(value)) ?
                 '' : parseFloat(value)
@@ -89,6 +90,7 @@ class SendMoney extends Component {
         return Object.keys(this.state.errors).filter(key => this.state.errors[key]).length;
     };
 
+    /* istanbul ignore next */
     handleSendMoney = () => {
         if (this.checkErrorCount()) {
             /* istanbul ignore next */
