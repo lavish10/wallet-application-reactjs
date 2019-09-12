@@ -36,10 +36,22 @@ const RecentTransactionsView = (props) => {
         {
             dataField: 'createdAt',
             text: 'Date',
-            sort: false,
+            sort: true,
             style: {fontWeight: 'bold', color: 'black'},
             headerStyle: (colum, colIndex) => {
                 return {width: '12.5em', textAlign: 'left', fontWeight: 'bold'};
+            },
+            sortFunc: (a, b, order, dataField, rowA, rowB) => {
+               console.log(new Date(a));
+                if (order === 'desc') {
+                    if (new Date(a) < new Date(b)) return 1;
+                    if (new Date(a) > new Date(b)) return -1;
+                    return 0;
+                } else {
+                    if (new Date(a) < new Date(b)) return -1;
+                    if (new Date(a) > new Date(b)) return 1;
+                    return 0;
+                }
             }
         }
     ];
