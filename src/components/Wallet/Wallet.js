@@ -4,14 +4,11 @@ import WalletModel from "./Wallet.model";
 import RecentTransactionService from "../../service/RecentTransactionService";
 import dateTimeFormatter from "../utils/dateTimeFormatter";
 import Header from "../Header";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Transactions from "../Transactions/Transactions";
 
 class Wallet extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentPage: 'home',
             transactions: [],
             transactionsLoaded: false
         }
@@ -61,33 +58,21 @@ class Wallet extends Component {
             })
     };
 
-    handleChangeNavBar = (name) => {
-        this.setState({
-            currentPage: name
-        });
-    };
-
     render() {
         return (
-            <div>
-                <Router>
-                    <Header handleChangeNavBar={this.handleChangeNavBar} name={this.state.name}
-                            currentPage={this.state.currentPage}/>
-                    <Switch>
-                        <Route path={"/"} exact component={() => <WalletView name={this.state.name}
-                                                                             walletId={this.state.id}
-                                                                             phoneNumber={this.state.phoneNumber}
-                                                                             balance={this.state.balance}
-                                                                             transactions={this.state.transactions}
-                                                                             transactionsLoaded={this.state.transactionsLoaded}
-                                                                             onUpdateBalance={this.onUpdateBalance}/>}/>
-                        <Route path={"/transactions"} component={()=><Transactions balance={this.state.balance} walletId={this.state.id}/>}/>
-                        ,
+            <React.Fragment>
 
-                    </Switch>
-                </Router>
+                <Header name={this.state.name}/>
+                <WalletView name={this.state.name}
+                            walletId={this.state.id}
+                            phoneNumber={this.state.phoneNumber}
+                            balance={this.state.balance}
+                            transactions={this.state.transactions}
+                            transactionsLoaded={this.state.transactionsLoaded}
+                            onUpdateBalance={this.onUpdateBalance}/>
+                {/*<Transactions balance={this.state.balance} walletId={this.state.id}/>*/}
 
-            </div>
+            </React.Fragment>
         );
     }
 }

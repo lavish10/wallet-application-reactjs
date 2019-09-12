@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import Wallet from "../Wallet/Wallet";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Transactions from "../Transactions/Transactions";
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             id: '',
-            loggedIn: false
+            loggedIn: false,
+            currentPage: 'home'
         }
     }
 
@@ -25,7 +28,15 @@ class Login extends Component {
     };
     renderWallet = () => {
         if (this.state.loggedIn) {
-            return <Wallet id={this.state.id}/>;
+            return (
+                <Router>
+                    <Switch>
+                        <Route path={"/"} exact component={() => <Wallet id={this.state.id}/>}/>
+                        <Route path={"/transactions"}
+                               component={() => <Transactions walletId={this.state.id}/>}/>
+                    </Switch>
+                </Router>
+            );
         }
     };
 

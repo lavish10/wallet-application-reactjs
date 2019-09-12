@@ -6,10 +6,15 @@ import '../App.css';
 class Header extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            currentPage: 'home'
+        }
     }
 
     handleClickNavBar = (event) => {
-        this.props.handleChangeNavBar(event.target.name);
+        this.setState({
+            currentPage: event.target.name
+        });
     };
 
     render() {

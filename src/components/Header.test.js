@@ -18,14 +18,14 @@ describe('header test', function () {
                                        currentPage={"home"}/>);
         expect(header.find('Link[name="home"]').hasClass('nav-link active')).toEqual(true);
     });
-    it('should be able to highlight the transactions page', function () {
+    it('should be able to highlight the transactions page ', function () {
         const mockFn = jest.fn();
         const header = shallow(<Header handleChangeNavBar={mockFn}
                                        name={"someName"}
                                        currentPage={"transactions"}/>);
         expect(header.find('Link[name="transactions"]').hasClass('nav-link active')).toEqual(true);
     });
-    it('should be able to highlight the transactions page', function () {
+    it('should be able to highlight the current page on click ', function () {
         const mockFn = jest.fn();
         const header = shallow(<Header handleChangeNavBar={mockFn}
                                        name={"someName"}
