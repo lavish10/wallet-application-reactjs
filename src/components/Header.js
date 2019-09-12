@@ -26,11 +26,11 @@ class Header extends Component {
                             <Navbar.Brand href="">Wallet</Navbar.Brand>
                             <Nav className="mr-auto">
                                 <Link name='home'
-                                      className={this.props.currentPage === 'home' ? 'nav-link active' : 'nav-link'}
+                                      className={this.state.currentPage === 'home' ? 'nav-link active' : 'nav-link'}
                                       onClick={this.handleClickNavBar}
                                       to={"/"}>Home</Link>
                                 <Link name='transactions'
-                                      className={this.props.currentPage === 'transactions' ? 'nav-link active' : 'nav-link'}
+                                      className={this.state.currentPage === 'transactions' ? 'nav-link active' : 'nav-link'}
                                       onClick={this.handleClickNavBar}
                                       to={"/transactions"}>Transactions</Link>
                             </Nav>

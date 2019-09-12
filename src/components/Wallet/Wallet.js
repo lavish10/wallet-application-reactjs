@@ -70,8 +70,6 @@ class Wallet extends Component {
                             transactions={this.state.transactions}
                             transactionsLoaded={this.state.transactionsLoaded}
                             onUpdateBalance={this.onUpdateBalance}/>
-                {/*<Transactions balance={this.state.balance} walletId={this.state.id}/>*/}
-
             </React.Fragment>
         );
     }
