@@ -1,17 +1,27 @@
 import React, {Component} from 'react';
 import RecentTransactionsView from "./RecentTransactions.view";
+import {Card} from "react-bootstrap";
 
 class RecentTransactions extends Component {
     render() {
         return (
-            <div align={'center'}>{
-                this.props.transactionsLoaded ? this.props.transactions.length > 0
-                    ? <RecentTransactionsView transactions={this.props.transactions}/> :
-                    <label>No recent transactions</label> :
-                    "Loading..."
+            <React.Fragment>
+                {
+                    this.props.transactionsLoaded ? this.props.transactions.length > 0
+                        ? <Card>
+                            <Card.Header> Recent Transactions</Card.Header>
+                            <Card.Body>
+                                <RecentTransactionsView transactions={this.props.transactions}/>
+                            </Card.Body>
+                        </Card>
+                        :
+                        <label>No recent transactions</label> :
+                        "Loading..."
 
-            }
-            </div>
+                }
+
+
+            </React.Fragment>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, ButtonToolbar, Col, Container, FormCheck, FormGroup, Row} from "react-bootstrap";
+import {Button, ButtonToolbar, Card, Col, Container, FormCheck, FormGroup, Row} from "react-bootstrap";
 import getStartDate from "../utils/getStartDate";
 import FilterService from "../../service/FilterService";
 import TransactionsView from "../Transactions/TransactionView";
@@ -72,37 +72,51 @@ class DateFilter extends Component {
     render() {
 
         return (
-            <Container>
-                <Balance balance={this.props.balance}/>
-                <FormGroup as={Row}>
-                    <Col sm={10}>
-                        {
-                            this.state.monthFilter.map((month) => {
-                                return (
-                                    <FormCheck
-                                        inline
-                                        value={month}
-                                        type="radio"
-                                        checked={this.state.monthFilterCheck[month]}
-                                        label={`${month} Month`}
-                                        name="formHorizontalRadios"
-                                        id={`formHorizontalRadios${month}`}
-                                        onClick={this.handleOnChange}
-                                    />
-                                );
-                            })
-                        }
-                    </Col>
-                </FormGroup>
-                <Col md={{span: 6, offset: 5}}>
-                    <ButtonToolbar>
-                        <Button variant="success" name="search" onClick={this.handleOnClick}>Search</Button>
-                        <Button variant="danger" onClick={this.handleClearFilter}>Clear All</Button>
-                    </ButtonToolbar>
-                </Col>
-                <br/>
-                <TransactionsView transactions={this.state.transactions}/>
-            </Container>
+            <React.Fragment>
+                <Container>
+                    <Balance balance={this.props.balance}/>
+                    <Card>
+                        <Card.Header>Filters</Card.Header>
+                        <Card.Body>
+                            <FormGroup as={Row}>
+                                <Col sm={10}>
+                                    {
+                                        this.state.monthFilter.map((month) => {
+                                            return (
+                                                <FormCheck
+                                                    inline
+                                                    value={month}
+                                                    type="radio"
+                                                    checked={this.state.monthFilterCheck[month]}
+                                                    label={`${month} Month`}
+                                                    name="formHorizontalRadios"
+                                                    id={`formHorizontalRadios${month}`}
+                                                    onClick={this.handleOnChange}
+                                                />
+                                            );
+                                        })
+                                    }
+                                </Col>
+                            </FormGroup>
+                            <Col md={{span: 6, offset: 5}}>
+                                <ButtonToolbar>
+                                    <Button variant="success" name="search" onClick={this.handleOnClick}>Search</Button>
+                                    <Button variant="danger" onClick={this.handleClearFilter}>Clear All</Button>
+                                </ButtonToolbar>
+                            </Col>
+                            <br/>
+                        </Card.Body>
+                    </Card>
+                </Container>
+                <Container>
+                    <Card>
+                        <Card.Header>Filtered Transactions</Card.Header>
+                        <Card.Body>
+                            <TransactionsView transactions={this.state.transactions}/>
+                        </Card.Body>
+                    </Card>
+                </Container>
+            </React.Fragment>
         );
     }
 }

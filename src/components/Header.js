@@ -22,7 +22,8 @@ class Header extends Component {
                                       to={"/transactions"}>Transactions</Link>
                             </Nav>
                             <Nav>
-                                <Nav.Link id="username">{this.props.name}</Nav.Link>
+                                <Nav.Link id="username"
+                                          className={'nav-link active'}>{this.props.name}</Nav.Link>
                             </Nav>
                         </Navbar>
                     </div>
