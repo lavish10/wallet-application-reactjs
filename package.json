@@ -46,6 +46,7 @@
       "src/components/**/*.js",
       "src/service/**/*.js",
       "!src/serviceWorker.js",
+      "!src/components/DummyLogin/*.js",
       "!src/index.js"
     ],
     "coverageThreshold": {

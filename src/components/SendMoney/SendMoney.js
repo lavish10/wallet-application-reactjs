@@ -34,7 +34,8 @@ class SendMoney extends Component {
         this.setState({
             [name]: value,
             successStatus: '',
-            errorstatus: ''
+            errorStatus: ''
+
         });
     };
     onPhoneNumberBlurHandler = () => {
